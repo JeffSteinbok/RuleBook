@@ -1,0 +1,32 @@
+[
+  {
+    "name": "No actions at all",
+    "order": 1,
+    "isEnabled": true,
+    "match": "all",
+    "conditions": [{ "kind": "subject", "match": { "anyOf": ["hello"], "mode": "contains" } }],
+    "exceptions": [],
+    "actions": [],
+    "status": { "hasError": false, "isReadOnly": false }
+  },
+  {
+    "name": "Duplicate order",
+    "order": 1,
+    "isEnabled": true,
+    "match": "all",
+    "conditions": [{ "kind": "subject", "match": { "anyOf": ["world"], "mode": "contains" } }],
+    "exceptions": [],
+    "actions": [{ "kind": "delete", "permanent": false }],
+    "status": { "hasError": false, "isReadOnly": false }
+  },
+  {
+    "name": "Backwards size range",
+    "order": 2,
+    "isEnabled": true,
+    "match": "all",
+    "conditions": [{ "kind": "size", "size": { "minimumBytes": 500000, "maximumBytes": 1000 } }],
+    "exceptions": [],
+    "actions": [{ "kind": "forward", "to": [{ "address": "" }] }],
+    "status": { "hasError": false, "isReadOnly": false }
+  }
+]

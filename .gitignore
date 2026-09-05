@@ -1,0 +1,9 @@
+.build/
+.swiftpm/
+*.xcodeproj
+DerivedData/
+.DS_Store
+
+# Never commit a cached token
+.rulebook/
+token.json

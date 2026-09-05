@@ -1,0 +1,24 @@
+{
+  "id": "AQAAAJc=",
+  "displayName": "Newsletters to Reading",
+  "sequence": 1,
+  "isEnabled": true,
+  "hasError": false,
+  "isReadOnly": false,
+  "conditions": {
+    "senderContains": ["newsletter", "digest"],
+    "subjectContains": ["weekly"],
+    "importance": "low"
+  },
+  "exceptions": {
+    "fromAddresses": [
+      { "emailAddress": { "name": "Owner", "address": "owner@example.com" } }
+    ]
+  },
+  "actions": {
+    "moveToFolder": "AQMkAGRingFolder",
+    "markAsRead": true,
+    "assignCategories": ["Reading"],
+    "stopProcessingRules": true
+  }
+}

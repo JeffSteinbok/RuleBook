@@ -1,0 +1,13 @@
+{
+  "id": "ANe1BmiP0",
+  "criteria": {
+    "from": "(newsletter OR digest)",
+    "subject": "weekly",
+    "hasAttachment": true,
+    "negatedQuery": "from:owner@example.com"
+  },
+  "action": {
+    "addLabelIds": ["Label_42", "STARRED"],
+    "removeLabelIds": ["INBOX", "UNREAD"]
+  }
+}

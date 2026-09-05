@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Newsletters to Reading",
+    "order": 1,
+    "isEnabled": true,
+    "match": "all",
+    "conditions": [
+      { "kind": "from", "match": { "anyOf": ["newsletter", "digest"], "mode": "contains" } },
+      { "kind": "subject", "match": { "anyOf": ["weekly"], "mode": "contains" } }
+    ],
+    "exceptions": [
+      { "kind": "from", "match": { "anyOf": ["owner@example.com"], "mode": "equals" } }
+    ],
+    "actions": [
+      { "kind": "moveTo", "folder": { "name": "Reading" } },
+      { "kind": "markAsRead", "value": true },
+      { "kind": "stopProcessing" }
+    ],
+    "status": { "hasError": false, "isReadOnly": false }
+  },
+  {
+    "name": "Big attachments",
+    "order": 2,
+    "isEnabled": true,
+    "match": "all",
+    "conditions": [
+      { "kind": "hasAttachment", "value": true },
+      { "kind": "size", "size": { "minimumBytes": 5242880 } }
+    ],
+    "exceptions": [],
+    "actions": [
+      { "kind": "addLabel", "folder": { "name": "Bulky" } },
+      { "kind": "markImportance", "value": "low" }
+    ],
+    "status": { "hasError": false, "isReadOnly": false }
+  }
+]
