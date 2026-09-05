@@ -22,7 +22,10 @@ public struct GmailRuleMapper: RuleMapper {
             .moveTo, .addLabel, .removeLabel, .markAsRead, .markAsStarred,
             .markImportance, .forward, .delete, .archive, .markAsSpam,
         ],
-        matchModes: [.contains],
+        // `.equals` holds for addresses — Gmail's from:/to: match an address
+        // directly. `encode` rejects it on subject and body, which have no
+        // exact-match form in Gmail search.
+        matchModes: [.contains, .equals],
         matchStrategies: [.all],
         // Gmail has no exception list, but `negatedQuery` does the same job.
         supportsExceptions: true,
@@ -60,10 +63,24 @@ public struct GmailRuleMapper: RuleMapper {
         for condition in rule.conditions {
             switch condition {
             case .from(let match):
+                // An address is an address: contains and equals both land on
+                // Gmail's `from:` field.
+                guard match.mode == .contains || match.mode == .equals else {
+                    reject("a \(match.mode.rawValue) match on the sender")
+                    continue
+                }
                 criteria.from = Self.orJoined(match.anyOf)
             case .recipient(let match):
+                guard match.mode == .contains || match.mode == .equals else {
+                    reject("a \(match.mode.rawValue) match on recipients")
+                    continue
+                }
                 criteria.to = Self.orJoined(match.anyOf)
             case .subject(let match):
+                guard match.mode == .contains else {
+                    reject("a \(match.mode.rawValue) match on the subject; Gmail search has no exact-match form")
+                    continue
+                }
                 criteria.subject = Self.orJoined(match.anyOf)
             case .hasAttachment(let value):
                 criteria.hasAttachment = value

@@ -55,11 +55,15 @@ public actor DeviceCodeTokenProvider: TokenProvider {
     private var cached: CachedToken?
 
     /// - Parameter prompt: called once with the user code when interactive
-    ///   sign-in is needed. Defaults to printing to stdout.
+    ///   sign-in is needed. Defaults to writing to standard error, which is
+    ///   unbuffered — the code has to appear *before* polling starts, and
+    ///   buffered stdout would hold it until the process exits.
     public init(
         configuration: Configuration,
         session: URLSession = .shared,
-        prompt: @escaping @Sendable (DeviceCodePrompt) -> Void = { print($0.message) }
+        prompt: @escaping @Sendable (DeviceCodePrompt) -> Void = {
+            FileHandle.standardError.write(Data(($0.message + "\n").utf8))
+        }
     ) {
         self.configuration = configuration
         self.session = session

@@ -202,6 +202,35 @@ struct GmailMapperTests {
         }
     }
 
+    @Test("An exact address match uses Gmail's from:/to: field")
+    func addressEqualityIsSupported() throws {
+        // Outlook stores exact addresses as fromAddresses/sentToAddresses,
+        // which decode to `.equals`. Gmail matches an address directly, so
+        // refusing `.equals` outright would block most real Outlook rules
+        // from ever porting.
+        let rule = MailRule.stub(conditions: [
+            .from(StringMatch(["a@b.com"], mode: .equals)),
+            .recipient(StringMatch(["c@d.com"], mode: .equals)),
+        ])
+
+        #expect(!RuleCompatibility.check(rule, against: GmailRuleMapper.capabilities).hasErrors)
+
+        let criteria = try #require(try mapper.encode(rule).criteria)
+        #expect(criteria.from == "a@b.com")
+        #expect(criteria.to == "c@d.com")
+    }
+
+    @Test("Exact matching is still refused where Gmail has no form for it")
+    func exactSubjectIsRefused() throws {
+        let rule = MailRule.stub(conditions: [.subject(StringMatch("exact", mode: .equals))])
+        do {
+            _ = try mapper.encode(rule)
+            Issue.record("Expected the mapper to refuse.")
+        } catch let MappingError.unsupported(issues) {
+            #expect(issues.first?.message.contains("no exact-match form") == true)
+        }
+    }
+
     @Test("A Gmail filter decodes into the neutral model")
     func decodesFilter() throws {
         let filter = try Fixtures.decode(GmailFilter.self, from: "gmail-filter")
