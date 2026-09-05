@@ -1,8 +1,14 @@
 .build/
 .swiftpm/
-*.xcodeproj
 DerivedData/
 .DS_Store
+
+# Xcode user state. The project itself (project.pbxproj) IS committed —
+# never ignore *.xcodeproj, or the app project vanishes from the repo.
+xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+*.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 
 # Never commit a cached token
 .rulebook/
