@@ -22,10 +22,17 @@ let package = Package(
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
             ]
         ),
+        // Hermetic: no network, no account, no credentials.
         .testTarget(
             name: "RuleBookKitTests",
             dependencies: ["RuleBookKit"],
             resources: [.copy("Fixtures")]
+        ),
+        // Talks to a real mailbox. Skipped unless RULEBOOK_LIVE=1, and kept in
+        // its own target so the default suite cannot accidentally depend on it.
+        .testTarget(
+            name: "RuleBookLiveTests",
+            dependencies: ["RuleBookKit"]
         ),
     ]
 )
