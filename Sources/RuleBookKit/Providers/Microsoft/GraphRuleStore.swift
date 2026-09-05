@@ -23,13 +23,16 @@ public struct GraphRuleStore: RuleStore {
         self.directory = directory
     }
 
-    /// - Parameter resolveFolderNames: when true (the default), the store
-    ///   builds a ``GraphMailFolderDirectory`` from the same credentials.
+    /// - Parameter resolveFolderNames: builds a ``GraphMailFolderDirectory``
+    ///   from the same credentials. **Off by default**: reading folders needs
+    ///   `Mail.ReadBasic`, which also grants message metadata across the whole
+    ///   mailbox — a steep price for display names, and not one to pay without
+    ///   the user choosing it. See ``GraphScopes/withFolderNames``.
     public init(
         tokenProvider: any TokenProvider,
         baseURL: URL = GraphMessageRuleClient.defaultBaseURL,
         session: URLSession = .shared,
-        resolveFolderNames: Bool = true
+        resolveFolderNames: Bool = false
     ) {
         self.client = GraphMessageRuleClient(
             tokenProvider: tokenProvider, baseURL: baseURL, session: session

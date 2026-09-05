@@ -62,6 +62,16 @@ struct StoreOptions: ParsableArguments {
     )
     var offline: String?
 
+    @Flag(
+        name: .long,
+        help: """
+            Resolve folder ids to names. Needs Mail.ReadBasic, which also grants \
+            message metadata across the mailbox, so it is off by default and \
+            triggers a fresh consent prompt.
+            """
+    )
+    var folderNames = false
+
     private var offlinePath: String? {
         let path = offline ?? ProcessInfo.processInfo.environment["RULEBOOK_OFFLINE"]
         return (path?.isEmpty ?? true) ? nil : path
@@ -90,7 +100,10 @@ struct StoreOptions: ParsableArguments {
 
         switch profile.id {
         case .microsoft:
-            return GraphRuleStore(tokenProvider: try tokenProvider())
+            return GraphRuleStore(
+                tokenProvider: try tokenProvider(),
+                resolveFolderNames: folderNames
+            )
         case .google:
             throw ValidationError(
                 """
@@ -125,7 +138,8 @@ struct StoreOptions: ParsableArguments {
         return DeviceCodeTokenProvider(
             configuration: .init(
                 clientID: clientID,
-                tenantID: tenantID ?? environment["RULEBOOK_TENANT_ID"] ?? "common"
+                tenantID: tenantID ?? environment["RULEBOOK_TENANT_ID"] ?? "common",
+                scopes: folderNames ? GraphScopes.withFolderNames : GraphScopes.default
             )
         )
     }
@@ -415,6 +429,15 @@ extension RuleBookCLI {
                 throw ValidationError("Listing \(profile.folderNoun)s is only implemented for Outlook.")
             }
 
+            guard options.folderNames else {
+                throw ValidationError(
+                    """
+                    Listing folders needs Mail.ReadBasic, which also grants message
+                    metadata across the mailbox. Re-run with --folder-names to
+                    consent to it.
+                    """
+                )
+            }
             let directory = GraphMailFolderDirectory(tokenProvider: try options.tokenProvider())
             let folders = try await directory.folders()
 
