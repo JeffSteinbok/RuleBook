@@ -21,22 +21,16 @@ SCOPES=(
   # Rules reference folders by opaque id; resolving those into names reads
   # /me/mailFolders, a separate resource with its own permission.
   #
-  # Folder names are deliberately NOT requested here. Resolving a rule's
-  # folder id to a name reads /me/mailFolders, and the only scope that does
-  # that on every account type is Mail.ReadBasic — which also grants the
-  # sender, recipients and subject of every message in the mailbox. That is
-  # far too much to pay for a display name, so the app shows folder ids unless
-  # someone explicitly opts in (`rulebook --folder-names`).
-  #
-  # MailboxFolder.Read would be the right scope — folders only, no messages —
-  # but it exists for WORK/SCHOOL ACCOUNTS ONLY. Via /common or /consumers it
-  # fails with AADSTS70011, and /common must satisfy both audiences, so an app
-  # accepting personal accounts cannot request it. If this app ever drops
-  # personal accounts, switch to it.
+  # Choosing a destination folder reads /me/mailFolders, so any rule that
+  # files mail depends on this. MailboxFolder.Read would be the precise scope —
+  # folders only, no messages — but it is work/school only: via /consumers or
+  # /common it fails with AADSTS70011, and /common must satisfy both audiences.
+  # Personal accounts are the expected audience here, so Mail.ReadBasic it is.
   #
   # Check any scope against an authority with:
   #   curl -s -X POST https://login.microsoftonline.com/<authority>/oauth2/v2.0/devicecode \\
   #     -d client_id=$APP_ID --data-urlencode "scope=MailboxFolder.Read offline_access"
+  "Mail.ReadBasic"
   "offline_access"
   "User.Read"
 )

@@ -26,10 +26,13 @@ public enum GraphScopes {
     /// opaque id can be shown with its name. `messageRules` lives under mailbox
     /// settings; folders are a separate resource with their own permission.
     ///
-    /// The only scope that reads `/me/mailFolders` on *every* account type —
-    /// and it also grants the sender, recipients and subject of every message
-    /// in the mailbox. Far too much to pay for folder names, so it is not in
-    /// ``default``: see ``withFolderNames``.
+    /// Reads `/me/mailFolders`, which the app needs to let anyone choose a
+    /// destination folder — so any rule that moves mail depends on it.
+    ///
+    /// It also grants the sender, recipients and subject of every message in
+    /// the mailbox, which is more than this app wants. ``mailboxFolderRead``
+    /// would be the precise scope, but personal Microsoft accounts do not have
+    /// it, and they are the expected audience.
     public static let mailReadBasic = "Mail.ReadBasic"
 
     /// Reads the folder tree without any access to messages. **Work/school
@@ -46,18 +49,14 @@ public enum GraphScopes {
     /// Needed to get a refresh token from the device code flow.
     public static let offlineAccess = "offline_access"
 
-    /// The default set the CLI and the app request: rules, and nothing else.
-    /// No access to messages or folders of any kind.
-    public static let `default` = [mailboxSettingsReadWrite, offlineAccess]
+    /// The default set the CLI and the app request. Asked for once, at sign-in:
+    /// choosing a destination folder needs `Mail.ReadBasic`, and a rules app
+    /// that cannot file mail is not much of one — so deferring it only moves
+    /// the same prompt into the middle of someone's first real task.
+    public static let `default` = [mailboxSettingsReadWrite, mailReadBasic, offlineAccess]
 
-    /// Opt-in: adds folder-name resolution at the cost of `Mail.ReadBasic`.
-    /// Requesting this triggers a fresh consent prompt naming mail access, so
-    /// ask for it only when someone has chosen readable folder names over the
-    /// narrower permission.
-    public static let withFolderNames = [mailboxSettingsReadWrite, mailReadBasic, offlineAccess]
-
-    /// The read-only set: enough to list rules, without naming their folders.
-    public static let readOnly = [mailboxSettingsRead, offlineAccess]
+    /// The read-only set: list and inspect rules, change nothing.
+    public static let readOnly = [mailboxSettingsRead, mailReadBasic, offlineAccess]
 
     /// The tightest set that still names folders, for a work/school-only build.
     /// Swaps `Mail.ReadBasic` — which grants message metadata — for the

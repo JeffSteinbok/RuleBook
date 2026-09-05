@@ -106,6 +106,9 @@ public actor GraphMailFolderDirectory: FolderDirectory {
                 .appendingPathComponent(path)
                 .appending(queryItems: [
                     URLQueryItem(name: "$top", value: "100"),
+                    // Graph omits hidden folders by default, and rules can
+                    // target them.
+                    URLQueryItem(name: "includeHiddenFolders", value: "true"),
                     URLQueryItem(name: "$select", value: "id,displayName,parentFolderId,childFolderCount"),
                 ])
 
