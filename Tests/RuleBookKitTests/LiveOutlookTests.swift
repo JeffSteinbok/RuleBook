@@ -40,6 +40,20 @@ enum Live {
         ))
     }
 
+    /// Drops resolved display names so two actions compare on folder id alone.
+    static func byFolderID(_ action: RuleAction) -> RuleAction {
+        func bare(_ folder: MailboxFolder) -> MailboxFolder {
+            folder.id.map(MailboxFolder.id) ?? folder
+        }
+        switch action {
+        case .moveTo(let f): return .moveTo(bare(f))
+        case .copyTo(let f): return .copyTo(bare(f))
+        case .addLabel(let f): return .addLabel(bare(f))
+        case .removeLabel(let f): return .removeLabel(bare(f))
+        default: return action
+        }
+    }
+
     enum LiveTestError: Error, CustomStringConvertible {
         case noCredentials
         var description: String {
@@ -77,7 +91,13 @@ struct LiveOutlookReadTests {
             #expect(back.name == rule.name)
             #expect(back.order == rule.order)
             #expect(Set(back.conditions) == Set(rule.conditions), "conditions drifted for \"\(rule.name)\"")
-            #expect(Set(back.actions) == Set(rule.actions), "actions drifted for \"\(rule.name)\"")
+            // Compare on folder *identity*. The store enriches folders with
+            // display names from the directory; the mapper only round-trips the
+            // id, so comparing names would be testing the wrong layer.
+            #expect(
+                Set(back.actions.map(Live.byFolderID)) == Set(rule.actions.map(Live.byFolderID)),
+                "actions drifted for \"\(rule.name)\""
+            )
         }
     }
 

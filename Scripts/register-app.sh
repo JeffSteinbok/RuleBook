@@ -18,6 +18,17 @@ IOS_BUNDLE_ID="${IOS_BUNDLE_ID:-net.steinbok.RuleBook}"
 # MailboxSettings.Read for a read-only build.
 SCOPES=(
   "MailboxSettings.ReadWrite"
+  # Rules reference folders by opaque id; resolving those into names reads
+  # /me/mailFolders, a separate resource with its own permission.
+  #
+  # MailboxFolder.Read looks like the tighter choice — it is listed on the
+  # Graph service principal and reads as folders-only — but requesting it is
+  # rejected with AADSTS70011 "the scope does not exist". It is not usable in
+  # a delegated token request, so Mail.ReadBasic is the real minimum here.
+  # Verify with:
+  #   curl -s -X POST https://login.microsoftonline.com/common/oauth2/v2.0/devicecode \
+  #     -d client_id=$APP_ID --data-urlencode "scope=MailboxFolder.Read offline_access"
+  "Mail.ReadBasic"
   "offline_access"
   "User.Read"
 )

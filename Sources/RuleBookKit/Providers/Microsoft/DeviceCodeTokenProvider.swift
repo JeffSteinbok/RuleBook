@@ -72,18 +72,26 @@ public actor DeviceCodeTokenProvider: TokenProvider {
 
     // MARK: - TokenProvider
 
+    /// Never signs in interactively: a library call that blocks for fifteen
+    /// minutes waiting on a browser is not something a caller can recover
+    /// from. When there is nothing usable, this throws and the caller is told
+    /// to run ``signIn()``.
     public func accessToken() async throws -> String {
-        if let cached, cached.isValid { return cached.accessToken }
+        // `cached` is empty on a fresh instance, so read the disk cache before
+        // deciding anything — otherwise a perfectly valid token is ignored and
+        // every call pays for a refresh round trip.
+        var token = cached
+        if token == nil { token = loadCache() }
 
-        if let refreshToken = (cached ?? loadCache())?.refreshToken,
-           let refreshed = try? await redeem(refreshToken: refreshToken) {
-            store(refreshed)
-            return refreshed.accessToken
+        guard let token else { throw RuleStoreError.notAuthenticated }
+        if token.isValid { return token.accessToken }
+
+        guard let refreshToken = token.refreshToken else {
+            throw RuleStoreError.notAuthenticated
         }
-
-        let token = try await signInWithDeviceCode()
-        store(token)
-        return token.accessToken
+        let refreshed = try await redeem(refreshToken: refreshToken)
+        store(refreshed)
+        return refreshed.accessToken
     }
 
     /// Forces a fresh interactive sign-in, ignoring any cached token.

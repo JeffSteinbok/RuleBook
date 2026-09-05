@@ -22,9 +22,21 @@ public enum GraphScopes {
     public static let mailboxSettingsReadWrite = "MailboxSettings.ReadWrite"
     /// Read-only variant, enough for `rulebook list` / `export`.
     public static let mailboxSettingsRead = "MailboxSettings.Read"
+    /// Reads the mail folder tree, so a rule that references a folder by
+    /// opaque id can be shown with its name. `messageRules` lives under mailbox
+    /// settings; folders are a separate resource with their own permission.
+    ///
+    /// `MailboxFolder.Read` looks like the tighter fit and is listed on the
+    /// Graph service principal, but requesting it fails with AADSTS70011
+    /// ("the scope does not exist"), so it is not usable in a delegated token
+    /// request. `Mail.ReadBasic` is the real minimum for `/me/mailFolders`.
+    public static let mailReadBasic = "Mail.ReadBasic"
     /// Needed to get a refresh token from the device code flow.
     public static let offlineAccess = "offline_access"
 
     /// The default set the CLI and the app request.
-    public static let `default` = [mailboxSettingsReadWrite, offlineAccess]
+    public static let `default` = [mailboxSettingsReadWrite, mailReadBasic, offlineAccess]
+
+    /// The read-only set: enough to list rules and name their folders.
+    public static let readOnly = [mailboxSettingsRead, mailReadBasic, offlineAccess]
 }

@@ -120,7 +120,10 @@ struct GraphStoreTests {
         configuration.protocolClasses = [MockURLProtocol.self]
         return GraphRuleStore(
             tokenProvider: StaticTokenProvider("test-token"),
-            session: URLSession(configuration: configuration)
+            session: URLSession(configuration: configuration),
+            // Folder resolution would issue its own requests and consume the
+            // queued responses; it is covered separately below.
+            resolveFolderNames: false
         )
     }
 
@@ -186,6 +189,40 @@ struct GraphStoreTests {
             _ = try await subject.createRule(.stub(actions: [.archive]))
         }
         #expect(MockURLProtocol.recordedRequests().isEmpty)
+    }
+
+    @Test("Folder ids are resolved to names on the way out")
+    func resolvesFolderNames() async throws {
+        let rule = try #require(try await folderResolvingStore(
+            body: #"{"value":[{"displayName":"Filed","sequence":1,"actions":{"moveToFolder":"folder-1"}}]}"#
+        ).listRules().first)
+
+        #expect(rule.action(.moveTo) == .moveTo(MailboxFolder(id: "folder-1", name: "Inbox/Reading")))
+    }
+
+    @Test("An unknown folder id is left as-is rather than dropped")
+    func unresolvableFolderSurvives() async throws {
+        let rule = try #require(try await folderResolvingStore(
+            body: #"{"value":[{"displayName":"Filed","sequence":1,"actions":{"moveToFolder":"gone"}}]}"#
+        ).listRules().first)
+
+        #expect(rule.action(.moveTo) == .moveTo(.id("gone")))
+    }
+
+    /// A store whose folder directory is fixed, so resolution is exercised
+    /// without the directory issuing requests of its own.
+    private func folderResolvingStore(body: String) -> GraphRuleStore {
+        MockURLProtocol.queue([.init(status: 200, body: body)])
+        let configuration = URLSessionConfiguration.ephemeral
+        configuration.protocolClasses = [MockURLProtocol.self]
+
+        return GraphRuleStore(
+            client: GraphMessageRuleClient(
+                tokenProvider: StaticTokenProvider("test-token"),
+                session: URLSession(configuration: configuration)
+            ),
+            folders: StaticFolderDirectory(["folder-1": "Inbox/Reading"])
+        )
     }
 
     @Test("A Graph error surfaces its code and message")

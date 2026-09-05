@@ -18,7 +18,7 @@ struct RuleBookCLI: AsyncParsableCommand {
             List.self, Get.self, Describe.self,
             Create.self, Update.self, Delete.self,
             Export.self, Apply.self,
-            Validate.self, Translate.self, Providers.self,
+            Validate.self, Translate.self, Providers.self, Folders.self,
         ],
         defaultSubcommand: List.self
     )
@@ -396,6 +396,34 @@ extension RuleBookCLI {
                     for issue in issues { print(issue.description) }
                 }
                 print()
+            }
+        }
+    }
+
+    struct Folders: AsyncParsableCommand {
+        static let configuration = CommandConfiguration(
+            abstract: "List the mailbox's folders, with the ids rules reference."
+        )
+
+        @OptionGroup var options: StoreOptions
+        @Flag(name: .long, help: "Show the opaque provider ids alongside the names.")
+        var ids = false
+
+        func run() async throws {
+            let profile = try options.profile()
+            guard profile.id == .microsoft else {
+                throw ValidationError("Listing \(profile.folderNoun)s is only implemented for Outlook.")
+            }
+
+            let directory = GraphMailFolderDirectory(tokenProvider: try options.tokenProvider())
+            let folders = try await directory.folders()
+
+            guard !folders.isEmpty else {
+                print("No \(profile.folderNoun)s returned.")
+                return
+            }
+            for folder in folders {
+                print(ids ? "\(Format.pad(folder.name ?? "?", 40))  \(folder.id ?? "-")" : (folder.name ?? "?"))
             }
         }
     }
