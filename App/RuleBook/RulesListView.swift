@@ -53,6 +53,12 @@ struct RulesListView: View {
                 .navigationDestination(isPresented: $showingAbout) {
                     AboutView()
                 }
+                // Must sit here, not on the row: List builds rows lazily, so a
+                // destination declared inside it is never visible to the
+                // navigation stack and is silently ignored.
+                .navigationDestination(item: $editingRule) { rule in
+                    RuleDetailView(rule: rule, model: model)
+                }
         }
     }
 
@@ -184,9 +190,6 @@ struct RulesListView: View {
         }
         .listRowBackground(DS.Palette.ground)
         .listRowInsets(.init(top: 14, leading: 16, bottom: 14, trailing: 16))
-        .navigationDestination(item: $editingRule) { rule in
-            RuleDetailView(rule: rule, model: model)
-        }
     }
 
     // MARK: - Chrome

@@ -17,6 +17,7 @@
 		846CA41364D961319CE67815 /* ConditionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A272BFF79C24FA63B4F0E01 /* ConditionEditor.swift */; };
 		886A84F0AF5ABEAB127E381E /* RuleEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10598980B0E15EEC38C5BD0C /* RuleEditorView.swift */; };
 		996D7BCDC7E6B6FACFDFA82E /* MSALTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69BA631F601A5EB1D7C78A0 /* MSALTokenProvider.swift */; };
+		9D91356052548E31AACEB7B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18003C0AD922E0FFAED9CA0A /* Assets.xcassets */; };
 		B4DD6D4B219ABC197F31455B /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7461EAB15B4BDD766937C1 /* AccountStore.swift */; };
 		C1CE864B3FC11CB4DDC9C29E /* RuleBookKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5DC8328B72F000D5657DE376 /* RuleBookKit */; };
 		C30FD436D97CF43E613C73F4 /* RuleBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57578D57066BFFCBB97E122 /* RuleBookApp.swift */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		074BD23E252E10DA38878E8D /* RulesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesListView.swift; sourceTree = "<group>"; };
 		10598980B0E15EEC38C5BD0C /* RuleEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleEditorView.swift; sourceTree = "<group>"; };
+		18003C0AD922E0FFAED9CA0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1ACFF6F152A6FFE894FAC3FC /* EmptyStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStates.swift; sourceTree = "<group>"; };
 		2B7461EAB15B4BDD766937C1 /* AccountStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountStore.swift; sourceTree = "<group>"; };
 		4A272BFF79C24FA63B4F0E01 /* ConditionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionEditor.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				2B7461EAB15B4BDD766937C1 /* AccountStore.swift */,
 				6A57635C3E656E41B19ABF68 /* AccountsView.swift */,
 				4E284461C0514C8EED4247CB /* AddAccountView.swift */,
+				18003C0AD922E0FFAED9CA0A /* Assets.xcassets */,
 				4A272BFF79C24FA63B4F0E01 /* ConditionEditor.swift */,
 				6CDBBCA782510FF444FC6058 /* DesignTokens.swift */,
 				1ACFF6F152A6FFE894FAC3FC /* EmptyStates.swift */,
@@ -116,6 +119,7 @@
 			buildConfigurationList = 81847C900C84C40C5704B18D /* Build configuration list for PBXNativeTarget "RuleBook" */;
 			buildPhases = (
 				516CAD012B89D10377DEE029 /* Sources */,
+				82DB8717DE756383AD4732F4 /* Resources */,
 				B3894BF6F8A9666E35A0ED31 /* Frameworks */,
 			);
 			buildRules = (
@@ -167,6 +171,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		82DB8717DE756383AD4732F4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D91356052548E31AACEB7B7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		516CAD012B89D10377DEE029 /* Sources */ = {

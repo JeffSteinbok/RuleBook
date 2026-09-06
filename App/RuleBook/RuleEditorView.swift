@@ -127,13 +127,15 @@ struct RuleEditorView: View {
             }
 
             ForEach(Array(model.draft.conditions.indices), id: \.self) { index in
-                ConditionEditor(
+                if model.draft.conditions.indices.contains(index) {
+                    ConditionEditor(
                     condition: $model.draft.conditions[index],
                     model: model,
-                    joiner: model.joiner(at: index, isException: false),
-                    onRemove: { model.removeCondition(at: index) }
-                )
-                .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        joiner: model.joiner(at: index, isException: false),
+                        onRemove: { model.removeCondition(at: index) }
+                    )
+                    .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+                }
             }
 
             Button("Add condition") { model.addCondition() }
@@ -153,13 +155,15 @@ struct RuleEditorView: View {
                     .padding(.bottom, 6)
 
                 ForEach(Array(model.draft.exceptions.indices), id: \.self) { index in
-                    ConditionEditor(
+                    if model.draft.exceptions.indices.contains(index) {
+                        ConditionEditor(
                         condition: $model.draft.exceptions[index],
                         model: model,
-                        joiner: model.joiner(at: index, isException: true),
-                        onRemove: { model.removeException(at: index) }
-                    )
-                    .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+                            joiner: model.joiner(at: index, isException: true),
+                            onRemove: { model.removeException(at: index) }
+                        )
+                        .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+                    }
                 }
 
                 Button("Add exception") { model.addException() }
@@ -208,8 +212,8 @@ struct RuleEditorView: View {
         // folder is the single most common way to author a broken rule.
         if !model.draft.actions.isEmpty {
             Section {
-                ForEach(Array(model.draft.actions.indices), id: \.self) { index in
-                    ActionValueEditor(action: $model.draft.actions[index], folders: model.availableFolders)
+                ForEach($model.draft.actions, id: \.self) { $action in
+                    ActionValueEditor(action: $action, folders: model.availableFolders)
                 }
             } header: {
                 SectionHeader(text: "Action details").padding(.top, 12)
