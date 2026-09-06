@@ -10,7 +10,7 @@
 
 set -euo pipefail
 
-APP_NAME="${APP_NAME:-RuleBook}"
+APP_NAME="${APP_NAME:-Rulebook}"
 IOS_BUNDLE_ID="${IOS_BUNDLE_ID:-net.steinbok.RuleBook}"
 
 # Delegated Microsoft Graph scopes. MailboxSettings.ReadWrite is the one that

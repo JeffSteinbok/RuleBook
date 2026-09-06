@@ -48,11 +48,21 @@ actor MSALTokenProvider: TokenProvider {
         MSALGlobalConfig.brokerAvailability = .none
 
         MSALGlobalConfig.loggerConfig.logLevel = .verbose
+        // Without this every description logs as "Masked(not-null)", which is
+        // how two failures in a row went unexplained. Local development only.
+        MSALGlobalConfig.loggerConfig.logMaskingLevel = .settingsMaskSecretsOnly
         MSALGlobalConfig.loggerConfig.setLogCallback { _, message, containsPII in
-            guard let message, !containsPII else { return }
+            guard let message else { return }
             NSLog("MSALLOG %@", message)
         }
     }()
+
+    /// MSAL requests these itself and refuses the call if they are passed in:
+    ///   "{( openid, profile, offline_access )} are reserved scopes and may not
+    ///    be specified in the acquire token call."
+    /// `GraphScopes.default` names `offline_access` because the CLI's raw
+    /// device-code flow has to ask for it explicitly. MSAL does not.
+    private static let reservedScopes: Set<String> = ["openid", "profile", "offline_access"]
 
     init(clientID: String, scopes: [String] = GraphScopes.default) throws {
         _ = Self.logging
@@ -77,7 +87,7 @@ actor MSALTokenProvider: TokenProvider {
         config.cacheConfig.keychainSharingGroup = Bundle.main.bundleIdentifier ?? clientID
 
         self.application = try MSALPublicClientApplication(configuration: config)
-        self.scopes = scopes
+        self.scopes = scopes.filter { !Self.reservedScopes.contains($0.lowercased()) }
         self.account = try? application.allAccounts().first
     }
 
@@ -118,7 +128,15 @@ actor MSALTokenProvider: TokenProvider {
         let scene = UIApplication.shared.connectedScenes
             .compactMap { $0 as? UIWindowScene }
             .first { $0.activationState == .foregroundActive }
-        return scene?.keyWindow?.rootViewController
+        guard var anchor = scene?.keyWindow?.rootViewController else { return nil }
+
+        // Sign-in is reached from inside the Add-account sheet, so the root
+        // controller already has something presented on it and cannot present
+        // again. Walk to whatever is actually on top.
+        while let presented = anchor.presentedViewController {
+            anchor = presented
+        }
+        return anchor
     }
 
     @discardableResult
