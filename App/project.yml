@@ -34,9 +34,25 @@ targets:
         UILaunchScreen: {}
         UISupportedInterfaceOrientations:
           - UIInterfaceOrientationPortrait
+        # Public-client id from Scripts/register-app.sh. Not a secret — a
+        # public client has none, and this ships inside every app binary.
+        RulebookClientID: 72997602-da76-49bd-a1cd-90f67d51bcc6
+        # MSAL hands control back through this scheme; it must match the
+        # redirect URI on the registration exactly.
+        CFBundleURLTypes:
+          - CFBundleURLSchemes:
+              - msauth.net.steinbok.RuleBook
+        # Lets MSAL detect and broker through Authenticator when installed.
+        LSApplicationQueriesSchemes:
+          - msauthv2
+          - msauthv3
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: net.steinbok.RuleBook
+        # Needed for $(AppIdentifierPrefix) in the entitlements to resolve;
+        # without a team it expands to nothing and the keychain group is
+        # silently dropped from the signed binary.
+        DEVELOPMENT_TEAM: Y7KVX7666P
         MARKETING_VERSION: "1.0"
         SWIFT_VERSION: "6.0"
         TARGETED_DEVICE_FAMILY: "1"

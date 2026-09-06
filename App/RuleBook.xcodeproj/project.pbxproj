@@ -140,6 +140,9 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					C18250A10625F09D774C16C4 = {
+						DevelopmentTeam = Y7KVX7666P;
+					};
 				};
 			};
 			buildConfigurationList = 629104FB58AD3BBF5ADE7184 /* Build configuration list for PBXProject "RuleBook" */;
@@ -196,6 +199,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = Y7KVX7666P;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = RuleBook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -334,6 +338,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = Y7KVX7666P;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = RuleBook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -40,6 +40,17 @@ actor MSALTokenProvider: TokenProvider {
             redirectUri: nil,          // msauth.<bundle-id>://auth, from Info.plist
             authority: authority
         )
+
+        // MSAL defaults its token cache to the shared `com.microsoft.adalcache`
+        // keychain group, which needs a keychain-sharing entitlement — and that
+        // entitlement cannot resolve under the simulator's ad-hoc signature,
+        // where $(AppIdentifierPrefix) expands to nothing. Every call then fails
+        // as MSALErrorInternal (-50000), with the real reason only in the device
+        // log. Keeping the cache in the app's own group avoids the entitlement
+        // entirely; the shared group only exists to enable SSO with other
+        // Microsoft apps, which this app does not do.
+        config.cacheConfig.keychainSharingGroup = Bundle.main.bundleIdentifier ?? clientID
+
         self.application = try MSALPublicClientApplication(configuration: config)
         self.scopes = scopes
         self.account = try? application.allAccounts().first
