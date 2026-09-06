@@ -75,7 +75,20 @@ final class RuleEditorModel {
         if rule != nil { self.step = .conditions }
     }
 
+    /// Replaces the picked action of this kind, addressed by kind rather than
+    /// by index so a row can never write to a stale position.
+    func replaceAction(kind: ActionKind, with action: RuleAction) {
+        guard let index = draft.actions.firstIndex(where: { $0.kind == kind }) else { return }
+        draft.actions[index] = action
+    }
+
+    func pickedAction(of kind: ActionKind) -> RuleAction? {
+        draft.actions.first { $0.kind == kind }
+    }
+
     func loadFolders() async {
+        // A failure leaves the list empty, which the editor renders as a
+        // free-text folder field rather than a dead picker.
         availableFolders = (try? await folders.folders()) ?? []
     }
 

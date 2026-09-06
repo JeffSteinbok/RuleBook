@@ -205,21 +205,25 @@ struct RuleEditorView: View {
                 }
                 .listRowBackground(DS.Palette.ground)
                 .listRowInsets(.init(top: 0, leading: DS.Metric.gutter, bottom: 0, trailing: DS.Metric.gutter))
-            }
-        }
 
-        // Any action carrying a value gets its own editor — a moveTo with no
-        // folder is the single most common way to author a broken rule.
-        if !model.draft.actions.isEmpty {
-            Section {
-                ForEach($model.draft.actions, id: \.self) { $action in
-                    ActionValueEditor(action: $action, folders: model.availableFolders)
+                // An action that carries a value gets its editor right here,
+                // under the row it belongs to. It used to sit in an "Action
+                // details" section below all ten actions, where nobody found
+                // it — and a moveTo with no folder chosen is the single most
+                // common way to author a rule that silently loses mail.
+                if model.isPicked(kind), let current = model.pickedAction(of: kind) {
+                    ActionValueEditor(
+                        action: Binding(
+                            get: { model.pickedAction(of: kind) ?? current },
+                            set: { model.replaceAction(kind: kind, with: $0) }
+                        ),
+                        folders: model.availableFolders
+                    )
+                    .padding(.leading, 36)
+                    .listRowBackground(DS.Palette.ground)
+                    .listRowInsets(.init(top: 0, leading: DS.Metric.gutter, bottom: 10, trailing: DS.Metric.gutter))
                 }
-            } header: {
-                SectionHeader(text: "Action details").padding(.top, 12)
             }
-            .listRowBackground(DS.Palette.ground)
-            .listRowInsets(.init(top: 6, leading: DS.Metric.gutter, bottom: 6, trailing: DS.Metric.gutter))
         }
 
         Section {
