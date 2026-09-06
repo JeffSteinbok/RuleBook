@@ -1,6 +1,15 @@
 {
-  "originHash" : "a9ab8694ac3656f7c39668b53122f6552f5065fbee66c0a486baf1f8d934deb2",
+  "originHash" : "2cd38b7aa08332b093496484e942f6bfaf82598485bca887e05bfad844f0abc5",
   "pins" : [
+    {
+      "identity" : "microsoft-authentication-library-for-objc",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AzureAD/microsoft-authentication-library-for-objc",
+      "state" : {
+        "revision" : "d54e9653f94883a896af533133888be1c2ef5c75",
+        "version" : "2.15.0"
+      }
+    },
     {
       "identity" : "swift-argument-parser",
       "kind" : "remoteSourceControl",

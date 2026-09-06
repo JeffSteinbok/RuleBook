@@ -42,10 +42,23 @@ public actor DeviceCodeTokenProvider: TokenProvider {
         public let message: String
     }
 
+    /// Where the refresh token is cached, per platform.
+    ///
+    /// `homeDirectoryForCurrentUser` does not exist on iOS, and a dotfile in
+    /// the home directory is a command-line convention anyway — on iOS the
+    /// equivalent is Application Support inside the sandbox.
     public static var defaultCacheURL: URL? {
-        FileManager.default.homeDirectoryForCurrentUser
+        #if os(macOS)
+        return FileManager.default.homeDirectoryForCurrentUser
             .appendingPathComponent(".rulebook", isDirectory: true)
             .appendingPathComponent("token.json")
+        #else
+        return try? FileManager.default
+            .url(for: .applicationSupportDirectory, in: .userDomainMask,
+                 appropriateFor: nil, create: true)
+            .appendingPathComponent("RuleBook", isDirectory: true)
+            .appendingPathComponent("token.json")
+        #endif
     }
 
     private let configuration: Configuration
