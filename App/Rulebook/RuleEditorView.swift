@@ -344,7 +344,6 @@ private struct ActionValueEditor: View {
         _ folder: MailboxFolder, label: String, set: @escaping (MailboxFolder) -> Void
     ) -> some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text(label).font(DS.Font.caption).foregroundStyle(DS.Palette.ink60)
             if folders.isEmpty {
                 // Folder list needs Mail.ReadBasic; typing a name still works
                 // because the mapper resolves either half of a MailboxFolder.
@@ -353,7 +352,7 @@ private struct ActionValueEditor: View {
                 ))
                 .textFieldStyle(RuleFieldStyle())
             } else {
-                Picker(label, selection: Binding(
+                Picker("", selection: Binding(
                     get: { folder.id ?? folders.first?.id ?? "" },
                     set: { id in
                         set(folders.first { $0.id == id } ?? .id(id))
@@ -364,6 +363,7 @@ private struct ActionValueEditor: View {
                     }
                 }
                 .pickerStyle(.menu)
+                .labelsHidden()
                 .tint(DS.Palette.accent700)
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
@@ -375,8 +375,7 @@ private struct ActionValueEditor: View {
         _ folder: MailboxFolder, label: String, set: @escaping (MailboxFolder) -> Void
     ) -> some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text(label).font(DS.Font.caption).foregroundStyle(DS.Palette.ink60)
-            TextField("Name", text: Binding(
+            TextField(label, text: Binding(
                 get: { folder.name ?? "" }, set: { set(.named($0)) }
             ))
             .textFieldStyle(RuleFieldStyle())
@@ -388,7 +387,6 @@ private struct ActionValueEditor: View {
         _ to: [MailAddress], label: String, set: @escaping ([MailAddress]) -> Void
     ) -> some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text(label).font(DS.Font.caption).foregroundStyle(DS.Palette.ink60)
             TextField("Addresses, comma separated", text: Binding(
                 get: { to.map(\.address).joined(separator: ", ") },
                 set: { text in
