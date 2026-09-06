@@ -336,3 +336,30 @@ struct LossyMappingTests {
         #expect(issues.allSatisfy { $0.severity == .warning })
     }
 }
+
+@Suite("Outlook evaluation order")
+struct GraphOrderTests {
+    let mapper = GraphRuleMapper()
+
+    @Test("A rule with no stated order gets sequence 1, never 0")
+    func defaultsToOne() throws {
+        // Graph rejects a sequence of 0 at request time:
+        //   MessageRuleValidationError ... Field: 'Sequence', Value: '0'
+        #expect(try mapper.encode(MailRule.stub(order: nil)).sequence == 1)
+    }
+
+    @Test("An explicit order of 0 is refused, with the reason")
+    func refusesZero() throws {
+        do {
+            _ = try mapper.encode(MailRule.stub(order: 0))
+            Issue.record("Expected the mapper to refuse sequence 0.")
+        } catch let MappingError.unsupported(issues) {
+            #expect(issues.contains { $0.message.contains("numbers rules from 1") })
+        }
+    }
+
+    @Test("A real order passes through untouched")
+    func keepsRealOrder() throws {
+        #expect(try mapper.encode(MailRule.stub(order: 7)).sequence == 7)
+    }
+}

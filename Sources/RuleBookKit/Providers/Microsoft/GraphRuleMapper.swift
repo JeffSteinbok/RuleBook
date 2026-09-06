@@ -46,6 +46,11 @@ public struct GraphRuleMapper: RuleMapper {
         if rule.match == .any {
             reject("matching any of several conditions; Graph ANDs every predicate")
         }
+        // Outlook numbers rules from 1. Sending 0 is rejected at request time
+        // with: MessageRuleValidationError ... Field: 'Sequence', Value: '0'.
+        if let order = rule.order, order < 1 {
+            reject("an evaluation order of \(order); Outlook numbers rules from 1")
+        }
 
         let conditions = encodePredicates(rule.conditions, reject: reject)
         let exceptions = encodePredicates(rule.exceptions, reject: reject)
@@ -56,7 +61,8 @@ public struct GraphRuleMapper: RuleMapper {
         return MessageRule(
             id: rule.id,
             displayName: rule.name,
-            sequence: rule.order ?? 0,
+            // A rule with no order stated goes first; 0 is not a legal sequence.
+            sequence: rule.order ?? 1,
             isEnabled: rule.isEnabled,
             conditions: conditions,
             exceptions: exceptions,

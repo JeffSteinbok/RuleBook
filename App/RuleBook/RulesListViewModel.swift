@@ -61,7 +61,10 @@ final class RulesListViewModel {
     /// Hands the editor the same store and profile this list is bound to, so a
     /// screen never has to reach for a concrete provider.
     func makeEditor(for rule: MailRule? = nil) -> RuleEditorModel {
-        RuleEditorModel(editing: rule, store: store, folders: folders, profile: profile)
+        RuleEditorModel(
+            editing: rule, store: store, folders: folders, profile: profile,
+            nextOrder: (rules.compactMap(\.order).max() ?? 0) + 1
+        )
     }
 
     init(

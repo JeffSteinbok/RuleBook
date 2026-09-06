@@ -48,16 +48,22 @@ final class RuleEditorModel {
 
     private(set) var availableFolders: [MailboxFolder] = []
 
+    /// - Parameter nextOrder: where a newly created rule lands in evaluation
+    ///   order. It must be a real position: Outlook numbers rules from 1 and
+    ///   rejects a sequence of 0 outright, and a new rule belongs after the
+    ///   ones already there, not in front of them.
     init(
         editing rule: MailRule? = nil,
         store: any RuleStore,
         folders: any FolderDirectory,
-        profile: ProviderProfile = ProviderCatalog.outlook
+        profile: ProviderProfile = ProviderCatalog.outlook,
+        nextOrder: Int = 1
     ) {
         self.original = rule
         self.isEditing = rule != nil
         self.draft = rule ?? MailRule(
             name: "",
+            order: nextOrder,
             isEnabled: true,
             match: .all,
             conditions: [.from(.init("", mode: .contains))],
