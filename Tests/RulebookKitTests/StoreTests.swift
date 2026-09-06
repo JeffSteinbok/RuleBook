@@ -1,6 +1,6 @@
 import Foundation
 import Testing
-@testable import RuleBookKit
+@testable import RulebookKit
 
 @Suite("InMemoryRuleStore")
 struct InMemoryStoreTests {
@@ -316,5 +316,45 @@ final class MockURLProtocol: URLProtocol {
             data.append(buffer, count: read)
         }
         return data
+    }
+}
+
+@Suite("Provider error text")
+struct ProviderErrorTextTests {
+
+    @Test("A Graph rule-validation error names the field in the app's own words")
+    func namesTheField() {
+        let error = RuleStoreError.provider(
+            .microsoft, status: 400, code: "ErrorInvalidValue",
+            message: "MessageRuleValidationError: ErrorCode: 'InvalidValue', "
+                   + "Message: 'The value isn't valid.', Field: 'Sequence', Value: '0'."
+        )
+        let text = try! #require(error.errorDescription)
+
+        #expect(text.contains("evaluation order"), "Should not say \"Sequence\": \(text)")
+        #expect(text.contains("0"))
+        #expect(!text.contains("MessageRuleValidationError"))
+    }
+
+    @Test("Known codes get plain sentences", arguments: [
+        ("ErrorItemNotFound", "no longer exists"),
+        ("ErrorQuotaExceeded", "as many rules as Outlook allows"),
+        ("ErrorAccessDenied", "refused access"),
+    ])
+    func knownCodes(code: String, expected: String) {
+        let error = RuleStoreError.provider(.microsoft, status: 400, code: code, message: "whatever")
+        #expect(error.errorDescription?.contains(expected) == true)
+    }
+
+    @Test("An unrecognised error keeps the provider's own text rather than hiding it")
+    func unknownFallsThrough() {
+        let error = RuleStoreError.provider(
+            .microsoft, status: 500, code: "SomethingNew", message: "A brand new failure."
+        )
+        let text = try! #require(error.errorDescription)
+
+        #expect(text.contains("SomethingNew"))
+        #expect(text.contains("A brand new failure."))
+        #expect(text.contains("500"))
     }
 }

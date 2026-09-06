@@ -1,4 +1,4 @@
-name: RuleBook
+name: Rulebook
 options:
   bundleIdPrefix: net.steinbok
   deploymentTarget:
@@ -8,25 +8,25 @@ options:
 packages:
   # The library lives at the repository root so it stays consumable over SPM;
   # the app takes it as a local package, so edits show up with no versioning.
-  RuleBookKit:
+  RulebookKit:
     path: ..
   MSAL:
     url: https://github.com/AzureAD/microsoft-authentication-library-for-objc
     from: 2.0.0
 
 targets:
-  RuleBook:
+  Rulebook:
     type: application
     platform: iOS
     sources:
-      - path: RuleBook
+      - path: Rulebook
     dependencies:
-      - package: RuleBookKit
-        product: RuleBookKit
+      - package: RulebookKit
+        product: RulebookKit
       - package: MSAL
         product: MSAL
     info:
-      path: RuleBook/Info.plist
+      path: Rulebook/Info.plist
       properties:
         CFBundleDisplayName: Rulebook
         CFBundleShortVersionString: "1.0"
@@ -41,14 +41,14 @@ targets:
         # redirect URI on the registration exactly.
         CFBundleURLTypes:
           - CFBundleURLSchemes:
-              - msauth.net.steinbok.RuleBook
+              - msauth.net.steinbok.Rulebook
         # Lets MSAL detect and broker through Authenticator when installed.
         LSApplicationQueriesSchemes:
           - msauthv2
           - msauthv3
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: net.steinbok.RuleBook
+        PRODUCT_BUNDLE_IDENTIFIER: net.steinbok.Rulebook
         # Needed for $(AppIdentifierPrefix) in the entitlements to resolve;
         # without a team it expands to nothing and the keychain group is
         # silently dropped from the signed binary.

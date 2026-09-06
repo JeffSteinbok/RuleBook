@@ -1,5 +1,5 @@
 import SwiftUI
-import RuleBookKit
+import RulebookKit
 
 /// Mailboxes — the iOS selection-list pattern.
 ///

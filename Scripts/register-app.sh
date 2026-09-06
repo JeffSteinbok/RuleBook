@@ -11,7 +11,7 @@
 set -euo pipefail
 
 APP_NAME="${APP_NAME:-Rulebook}"
-IOS_BUNDLE_ID="${IOS_BUNDLE_ID:-net.steinbok.RuleBook}"
+IOS_BUNDLE_ID="${IOS_BUNDLE_ID:-net.steinbok.Rulebook}"
 
 # Delegated Microsoft Graph scopes. MailboxSettings.ReadWrite is the one that
 # grants access to /me/mailFolders/inbox/messageRules; drop it to

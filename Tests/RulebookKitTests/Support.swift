@@ -1,6 +1,6 @@
 import Foundation
 import Testing
-@testable import RuleBookKit
+@testable import RulebookKit
 
 enum Fixtures {
     static func data(_ name: String) throws -> Data {

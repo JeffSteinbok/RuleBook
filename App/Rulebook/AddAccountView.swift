@@ -1,5 +1,5 @@
 import SwiftUI
-import RuleBookKit
+import RulebookKit
 
 /// Add a mailbox: an explainer, then Microsoft's own sign-in, then a summary.
 ///

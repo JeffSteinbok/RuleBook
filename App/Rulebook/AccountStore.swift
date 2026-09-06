@@ -1,10 +1,10 @@
 import Foundation
 import Observation
-import RuleBookKit
+import RulebookKit
 
 /// One connected mailbox.
 ///
-/// `RuleBookKit` has one store per account and no notion of a set, so the
+/// `RulebookKit` has one store per account and no notion of a set, so the
 /// multi-mailbox model lives app-side. Only the address and display name are
 /// persisted — tokens stay in MSAL's Keychain-backed cache.
 struct Account: Identifiable, Codable, Hashable {

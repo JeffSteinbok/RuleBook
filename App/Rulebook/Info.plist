@@ -23,7 +23,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>msauth.net.steinbok.RuleBook</string>
+				<string>msauth.net.steinbok.Rulebook</string>
 			</array>
 		</dict>
 	</array>

@@ -1,5 +1,5 @@
 import SwiftUI
-import RuleBookKit
+import RulebookKit
 
 /// Create or edit a rule. Three steps when creating; the editor opens straight
 /// on conditions when editing an existing rule.

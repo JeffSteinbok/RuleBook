@@ -61,6 +61,9 @@ public enum RuleStoreError: Error, LocalizedError, Sendable {
         case .notAuthenticated:
             return "Not signed in. Run `rulebook login` first."
         case .provider(let provider, let status, let code, let message):
+            if let readable = ProviderErrorText.readable(code: code, message: message) {
+                return readable
+            }
             let detail = [code, message].compactMap { $0 }.joined(separator: ": ")
             return detail.isEmpty
                 ? "\(provider.rawValue) returned HTTP \(status)."
@@ -70,5 +73,64 @@ public enum RuleStoreError: Error, LocalizedError, Sendable {
         case .decoding(let error):
             return "Could not decode the provider response: \(error)"
         }
+    }
+}
+
+
+/// Turns a provider's own error text into something worth showing a person.
+///
+/// Graph reports rule validation failures as one dense string:
+///
+///     MessageRuleValidationError: ErrorCode: 'InvalidValue',
+///     Message: 'The value isn't valid.', Field: 'Sequence', Value: '0'.
+///
+/// The field and value are the useful parts, and "Sequence" is not a word the
+/// app uses anywhere. Anything unrecognised falls through to the raw text
+/// rather than being flattened into "something went wrong".
+enum ProviderErrorText {
+
+    /// Graph field names, in the vocabulary the rest of the app speaks.
+    private static let fieldNames: [String: String] = [
+        "Sequence": "evaluation order",
+        "DisplayName": "name",
+        "MoveToFolder": "destination folder",
+        "CopyToFolder": "folder to copy to",
+        "ForwardTo": "forwarding address",
+        "ForwardAsAttachmentTo": "forwarding address",
+        "RedirectTo": "redirect address",
+        "AssignCategories": "category",
+    ]
+
+    static func readable(code: String?, message: String?) -> String? {
+        guard let message else { return nil }
+
+        if let field = capture("Field: '", in: message) {
+            let name = fieldNames[field] ?? field
+            if let value = capture("Value: '", in: message) {
+                return "Outlook rejected the \(name): \u{201C}\(value)\u{201D} isn\u{2019}t allowed."
+            }
+            return "Outlook rejected the \(name)."
+        }
+
+        switch code {
+        case "ErrorItemNotFound":
+            return "That rule no longer exists on the server."
+        case "ErrorAccessDenied":
+            return "Outlook refused access. The sign-in may not cover mail rules any more."
+        case "ErrorInvalidIdMalformed":
+            return "That rule\u{2019}s identifier isn\u{2019}t valid."
+        case "ErrorQuotaExceeded":
+            return "The mailbox has as many rules as Outlook allows."
+        default:
+            return nil
+        }
+    }
+
+    private static func capture(_ prefix: String, in text: String) -> String? {
+        guard let start = text.range(of: prefix) else { return nil }
+        let rest = text[start.upperBound...]
+        guard let end = rest.firstIndex(of: "\u{27}") else { return nil }
+        let value = String(rest[..<end])
+        return value.isEmpty ? nil : value
     }
 }

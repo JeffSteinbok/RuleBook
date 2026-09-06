@@ -1,6 +1,6 @@
 import Foundation
 import Testing
-@testable import RuleBookKit
+@testable import RulebookKit
 
 /// Tests that talk to a real Microsoft 365 mailbox.
 ///

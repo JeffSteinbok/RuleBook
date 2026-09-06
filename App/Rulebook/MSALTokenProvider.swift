@@ -1,10 +1,10 @@
 import Foundation
 import MSAL
-import RuleBookKit
+import RulebookKit
 
 /// The only MSAL-aware type in the app.
 ///
-/// `RuleBookKit` imports nothing but Foundation and takes its bearer token
+/// `RulebookKit` imports nothing but Foundation and takes its bearer token
 /// through `TokenProvider` — so MSAL stops here and never reaches the library
 /// or the view models.
 ///

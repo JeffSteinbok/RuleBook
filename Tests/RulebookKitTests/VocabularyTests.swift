@@ -1,6 +1,6 @@
 import Foundation
 import Testing
-@testable import RuleBookKit
+@testable import RulebookKit
 
 @Suite("Provider vocabulary")
 struct VocabularyTests {

@@ -1,5 +1,5 @@
 import SwiftUI
-import RuleBookKit
+import RulebookKit
 
 /// A rule, read-only, with the one control that matters inline (enable) and
 /// everything else behind Edit.

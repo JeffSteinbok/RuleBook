@@ -1,6 +1,6 @@
 import Foundation
 import Testing
-@testable import RuleBookKit
+@testable import RulebookKit
 
 @Suite("Outlook / Graph mapper")
 struct GraphMapperTests {

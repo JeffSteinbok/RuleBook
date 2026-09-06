@@ -1,7 +1,7 @@
 # Build the RuleBook iOS app
 
 You are working in the `RuleBook` repository — a Swift package containing
-`RuleBookKit` (a provider-neutral mail-rules engine with a working Microsoft
+`RulebookKit` (a provider-neutral mail-rules engine with a working Microsoft
 Graph implementation) and a CLI harness. Read `README.md` first; it explains the
 layout and the design of the library in detail.
 
@@ -14,7 +14,7 @@ A `handoff/` folder (unzip it into the repo root, or wherever the user put it):
 
 - `RuleBook-app-spec.md` — every screen, every state, and which
   `ProviderProfile` / `RuleStore` call backs each control. **Read this in full
-  before writing code.** It ends with four known gaps in `RuleBookKit`.
+  before writing code.** It ends with four known gaps in `RulebookKit`.
 - `App/` — 16 Swift files implementing the whole design, plus `README.md`
   with the build order and the reasoning behind the non-obvious choices. These
   were written against the library's source but **never compiled**, so expect
@@ -45,7 +45,7 @@ lives.
 
 ## Ground rules
 
-**`RuleBookKit` imports nothing but Foundation.** No UIKit, no SwiftUI, no
+**`RulebookKit` imports nothing but Foundation.** No UIKit, no SwiftUI, no
 MSAL. That is what lets one target build for iOS, the simulator and the CLI.
 Keep it that way: UI belongs in `App/`, and MSAL arrives through the
 `TokenProvider` protocol. If you find yourself adding a dependency to the
@@ -72,12 +72,12 @@ collapse to "something went wrong".
 
 Do not start with auth. The point of `any RuleStore` is that you don't have to.
 
-1. **Create the Xcode project** at `App/RuleBook.xcodeproj`. Add the local
+1. **Create the Xcode project** at `App/Rulebook.xcodeproj`. Add the local
    package: File → Add Package Dependencies → Add Local → `../`. Link
-   `RuleBookKit`. `Package.swift` stays at the repo root — don't move it.
+   `RulebookKit`. `Package.swift` stays at the repo root — don't move it.
 
 2. **Copy in every handoff file except `MSALTokenProvider.swift` and
-   `RuleBookApp.swift`.** Get `RulesListView`'s `#Preview` rendering. It runs on
+   `RulebookApp.swift`.** Get `RulesListView`'s `#Preview` rendering. It runs on
    `InMemoryRuleStore` with a `StaticFolderDirectory` — no auth, no network, no
    Azure. `accounts` and `tokens` are optional on that view precisely so this
    works. Fix compile errors here, where the loop is fast.
@@ -94,7 +94,7 @@ Do not start with auth. The point of `any RuleStore` is that you don't have to.
    long-press threshold in particular needs a real touch loop.
 
 5. **Add MSAL** via SPM. Copy in `MSALTokenProvider.swift` and
-   `RuleBookApp.swift`. Add the redirect URI
+   `RulebookApp.swift`. Add the redirect URI
    `msauth.$(PRODUCT_BUNDLE_IDENTIFIER)://auth` and a `RulebookClientID` key to
    `Info.plist`. The client id comes from `Scripts/register-app.sh`.
 
@@ -183,7 +183,7 @@ most: an unnamed rule, a rule with no actions, and a `moveTo` with no folder
 chosen — that last one is the most common way to author a rule that silently
 loses mail.
 
-## Known gaps in RuleBookKit
+## Known gaps in RulebookKit
 
 The app exposed four. All small; decide on them rather than working around them
 forever.

@@ -1,5 +1,5 @@
 import SwiftUI
-import RuleBookKit
+import RulebookKit
 
 /// The primary screen. Binds only to `RulesListViewModel`, which binds only to
 /// `RuleStore` + `ProviderProfile` — so this view runs identically against an

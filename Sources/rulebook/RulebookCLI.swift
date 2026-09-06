@@ -1,9 +1,9 @@
 import ArgumentParser
 import Foundation
-import RuleBookKit
+import RulebookKit
 
 @main
-struct RuleBookCLI: AsyncParsableCommand {
+struct RulebookCLI: AsyncParsableCommand {
     static let configuration = CommandConfiguration(
         commandName: "rulebook",
         abstract: "Inspect, validate, and edit mail rules across providers.",
@@ -140,7 +140,7 @@ struct StoreOptions: ParsableArguments {
 
 // MARK: - Auth
 
-extension RuleBookCLI {
+extension RulebookCLI {
     struct Login: AsyncParsableCommand {
         static let configuration = CommandConfiguration(abstract: "Sign in and cache a refresh token.")
 
@@ -172,7 +172,7 @@ extension RuleBookCLI {
 
 // MARK: - Read
 
-extension RuleBookCLI {
+extension RulebookCLI {
     struct List: AsyncParsableCommand {
         static let configuration = CommandConfiguration(abstract: "List rules, in evaluation order.")
 
@@ -248,7 +248,7 @@ extension RuleBookCLI {
 
 // MARK: - Write
 
-extension RuleBookCLI {
+extension RulebookCLI {
     struct Create: AsyncParsableCommand {
         static let configuration = CommandConfiguration(abstract: "Create a rule from a JSON file.")
 
@@ -344,7 +344,7 @@ extension RuleBookCLI {
 
 // MARK: - Offline tools
 
-extension RuleBookCLI {
+extension RulebookCLI {
     struct Validate: AsyncParsableCommand {
         static let configuration = CommandConfiguration(
             abstract: "Check a rule file — structure, and what the provider supports. Runs offline."

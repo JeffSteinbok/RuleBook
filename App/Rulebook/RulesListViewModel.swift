@@ -1,6 +1,6 @@
 import Foundation
 import Observation
-import RuleBookKit
+import RulebookKit
 
 /// Backs the rules list. Knows nothing about Graph or MSAL — it holds
 /// `any RuleStore`, so previews inject `InMemoryRuleStore` and ship injects

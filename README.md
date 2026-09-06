@@ -12,26 +12,26 @@ end to end, and a command-line harness for driving all of it without an app.
 ```
 Package.swift              Swift package: the library and the CLI
 Sources/
-  RuleBookKit/             The library the iOS app links
+  RulebookKit/             The library the iOS app links
     Core/                    Neutral model — MailRule, conditions, actions
     Providers/Microsoft/     Graph wire types, mapper, store, auth
     Providers/Google/        Gmail wire types and mapper
     Stores/                  In-memory and JSON-file stores
   rulebook/                CLI harness
 Tests/
-  RuleBookKitTests/        Hermetic: no network, no account
-  RuleBookLiveTests/       Talks to a real mailbox; opt-in
+  RulebookKitTests/        Hermetic: no network, no account
+  RulebookLiveTests/       Talks to a real mailbox; opt-in
 Scripts/register-app.sh    Creates the Entra ID app registration
 App/                       The iOS app (not yet created)
 ```
 
 `Package.swift` stays at the repository root on purpose. SwiftPM only
 recognises a manifest at the root, so keeping it there is what lets the library
-be consumed as `.package(url: "https://github.com/JeffSteinbok/RuleBook")`.
+be consumed as `.package(url: "https://github.com/JeffSteinbok/Rulebook")`.
 The Xcode project in `App/` will reference the package locally, at `../`, so
-edits to `RuleBookKit` show up in the app immediately with no versioning step.
+edits to `RulebookKit` show up in the app immediately with no versioning step.
 
-`RuleBookKit` imports nothing but Foundation — no UIKit, no SwiftUI, no MSAL —
+`RulebookKit` imports nothing but Foundation — no UIKit, no SwiftUI, no MSAL —
 which is what lets one target build for iOS, the Simulator, and the CLI. Keep
 it that way: UI belongs in `App/`, and MSAL arrives through a protocol.
 
@@ -102,7 +102,7 @@ Naming a provider alongside it makes the file behave like that provider, so a
 Gmail-capability file refuses what Gmail refuses with no Google account.
 
 ```sh
-cp Tests/RuleBookKitTests/Fixtures/neutral-rules.json /tmp/mailbox.json
+cp Tests/RulebookKitTests/Fixtures/neutral-rules.json /tmp/mailbox.json
 swift run rulebook list   --offline /tmp/mailbox.json
 swift run rulebook apply  --offline /tmp/mailbox.json -f rules.json --dry-run
 ```

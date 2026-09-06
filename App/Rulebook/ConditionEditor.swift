@@ -1,5 +1,5 @@
 import SwiftUI
-import RuleBookKit
+import RulebookKit
 
 /// One condition row: field picker, then whatever editor that field needs.
 ///

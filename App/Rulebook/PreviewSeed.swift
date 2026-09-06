@@ -1,5 +1,5 @@
 import Foundation
-import RuleBookKit
+import RulebookKit
 
 /// Shared fixtures for previews and simulator runs with no account.
 ///

@@ -1,6 +1,6 @@
 import Foundation
 import Observation
-import RuleBookKit
+import RulebookKit
 
 /// Draft state for one rule, shared by the create flow and the editor.
 ///

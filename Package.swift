@@ -2,10 +2,10 @@
 import PackageDescription
 
 let package = Package(
-    name: "RuleBook",
+    name: "Rulebook",
     platforms: [.iOS(.v17), .macOS(.v14)],
     products: [
-        .library(name: "RuleBookKit", targets: ["RuleBookKit"]),
+        .library(name: "RulebookKit", targets: ["RulebookKit"]),
         .executable(name: "rulebook", targets: ["rulebook"]),
     ],
     dependencies: [
@@ -14,25 +14,25 @@ let package = Package(
     targets: [
         // Pure Swift + Foundation only. No UIKit/SwiftUI/AppKit imports here,
         // so this target builds unchanged for macOS CLI, iOS, and the Simulator.
-        .target(name: "RuleBookKit"),
+        .target(name: "RulebookKit"),
         .executableTarget(
             name: "rulebook",
             dependencies: [
-                "RuleBookKit",
+                "RulebookKit",
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
             ]
         ),
         // Hermetic: no network, no account, no credentials.
         .testTarget(
-            name: "RuleBookKitTests",
-            dependencies: ["RuleBookKit"],
+            name: "RulebookKitTests",
+            dependencies: ["RulebookKit"],
             resources: [.copy("Fixtures")]
         ),
         // Talks to a real mailbox. Skipped unless RULEBOOK_LIVE=1, and kept in
         // its own target so the default suite cannot accidentally depend on it.
         .testTarget(
-            name: "RuleBookLiveTests",
-            dependencies: ["RuleBookKit"]
+            name: "RulebookLiveTests",
+            dependencies: ["RulebookKit"]
         ),
     ]
 )

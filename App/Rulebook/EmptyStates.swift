@@ -1,5 +1,5 @@
 import SwiftUI
-import RuleBookKit
+import RulebookKit
 
 /// What someone sees when the mailbox has no rules at all.
 ///

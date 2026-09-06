@@ -7,285 +7,209 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1FA0DA35D93390F0602BB0F5 /* RulesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074BD23E252E10DA38878E8D /* RulesListView.swift */; };
-		230CB907824FE33DECF9858F /* AccountsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A57635C3E656E41B19ABF68 /* AccountsView.swift */; };
-		253465F0C6E706322284320D /* EmptyStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ACFF6F152A6FFE894FAC3FC /* EmptyStates.swift */; };
-		3A68A07F3687286D47B80B79 /* MSAL in Frameworks */ = {isa = PBXBuildFile; productRef = 450FF7C0D5A79DA642FDF855 /* MSAL */; };
-		3D27098E77181B143C3DBE20 /* DesignTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDBBCA782510FF444FC6058 /* DesignTokens.swift */; };
-		3EDD00C4FCEB8D827210E070 /* PreviewSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AB41F30714040086DABF89 /* PreviewSeed.swift */; };
-		81AB0BDFDB52C7369D640F4D /* RuleDiagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F16F2837E200AC2D46D5853 /* RuleDiagnostics.swift */; };
-		846CA41364D961319CE67815 /* ConditionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A272BFF79C24FA63B4F0E01 /* ConditionEditor.swift */; };
-		886A84F0AF5ABEAB127E381E /* RuleEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10598980B0E15EEC38C5BD0C /* RuleEditorView.swift */; };
-		996D7BCDC7E6B6FACFDFA82E /* MSALTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69BA631F601A5EB1D7C78A0 /* MSALTokenProvider.swift */; };
-		9D91356052548E31AACEB7B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18003C0AD922E0FFAED9CA0A /* Assets.xcassets */; };
-		B4DD6D4B219ABC197F31455B /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7461EAB15B4BDD766937C1 /* AccountStore.swift */; };
-		C1CE864B3FC11CB4DDC9C29E /* RuleBookKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5DC8328B72F000D5657DE376 /* RuleBookKit */; };
-		C30FD436D97CF43E613C73F4 /* RuleBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57578D57066BFFCBB97E122 /* RuleBookApp.swift */; };
-		DE82CE143189DC1BA2AF4B52 /* RulesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B156E72DA4EA0D9377F7E156 /* RulesListViewModel.swift */; };
-		E4632543B4F53A3B14E006E8 /* RuleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE4F3DDADC6A47E0CCB6740 /* RuleDetailView.swift */; };
-		F3C0256AA2946BB628464B44 /* AddAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E284461C0514C8EED4247CB /* AddAccountView.swift */; };
-		F577F1345ED03A9CB0D89486 /* RuleEditorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD722D1E002ED80C26AED7FE /* RuleEditorModel.swift */; };
+		30A90C395839A52FA869E359 /* RuleBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13E754716B70A913307162C /* RuleBookApp.swift */; };
+		36E13F777F772DD299E64A25 /* MSALTokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32210122649D35CB55AB2A6 /* MSALTokenProvider.swift */; };
+		38122D86E7D5516B34689AFF /* AccountStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EBFFCBB1851E430C038584 /* AccountStore.swift */; };
+		5308BB620CA607295E52C72B /* PreviewSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CA180A07CFA6F9A35D88299 /* PreviewSeed.swift */; };
+		6637068E2CCA89FBD6C41A25 /* RulesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD4E1FE31C250BA2778D37DF /* RulesListViewModel.swift */; };
+		792874D7A39F0035F46032FB /* RulebookKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4E10F50DC172D15F31C7DD43 /* RulebookKit */; };
+		7AC53E14155FCC094E5E5863 /* RuleEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F60C0A8E75EE9242771716 /* RuleEditorView.swift */; };
+		808DCAF6FF8A56864ACFCA0E /* RuleDiagnostics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D94761282964ED07949781 /* RuleDiagnostics.swift */; };
+		8AB38089FE11B85E2C4742B7 /* RulesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04737A35D3A609B22837882E /* RulesListView.swift */; };
+		9B8CB2A8287D746593404219 /* ConditionEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C9364D788CDBD25D78BEDF /* ConditionEditor.swift */; };
+		A26A831271B0377830F17835 /* DesignTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837E43CDF9DF7B5648234F3 /* DesignTokens.swift */; };
+		A3BB8AFF44C7E104143F6A3F /* MSAL in Frameworks */ = {isa = PBXBuildFile; productRef = F405D37C0A53D316D4A68C01 /* MSAL */; };
+		A4F90554F0DE7C26F35CD1EA /* AccountsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB651FE9D3FE83085EF2774 /* AccountsView.swift */; };
+		B031FBEA1ABA14A19AF230DA /* EmptyStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BC9E3FF4B49208354D0359 /* EmptyStates.swift */; };
+		D9AB0810DFF1697C5B24BF0E /* AddAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D063BB8D7341C7338CD1AD /* AddAccountView.swift */; };
+		E049EE3E14953624AD28E21A /* RuleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C81C42C5360070006BEED62 /* RuleDetailView.swift */; };
+		E54FBBC090BF8C95339CFCA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCFFA801C6A0B88625247FBA /* Assets.xcassets */; };
+		F20287F8D951B6F3CC89DF59 /* RuleEditorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0178A40B3C75479CB050555C /* RuleEditorModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		074BD23E252E10DA38878E8D /* RulesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesListView.swift; sourceTree = "<group>"; };
-		10598980B0E15EEC38C5BD0C /* RuleEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleEditorView.swift; sourceTree = "<group>"; };
-		18003C0AD922E0FFAED9CA0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1ACFF6F152A6FFE894FAC3FC /* EmptyStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStates.swift; sourceTree = "<group>"; };
-		2B7461EAB15B4BDD766937C1 /* AccountStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountStore.swift; sourceTree = "<group>"; };
-		4A272BFF79C24FA63B4F0E01 /* ConditionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionEditor.swift; sourceTree = "<group>"; };
-		4E284461C0514C8EED4247CB /* AddAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountView.swift; sourceTree = "<group>"; };
-		4F16F2837E200AC2D46D5853 /* RuleDiagnostics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleDiagnostics.swift; sourceTree = "<group>"; };
-		5C19341C5698FF6827098037 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		62C1022F9E8347E6462A6F25 /* RuleBook */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RuleBook; path = ..; sourceTree = SOURCE_ROOT; };
-		6A57635C3E656E41B19ABF68 /* AccountsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsView.swift; sourceTree = "<group>"; };
-		6CDBBCA782510FF444FC6058 /* DesignTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignTokens.swift; sourceTree = "<group>"; };
-		76AB41F30714040086DABF89 /* PreviewSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSeed.swift; sourceTree = "<group>"; };
-		A57578D57066BFFCBB97E122 /* RuleBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleBookApp.swift; sourceTree = "<group>"; };
-		B156E72DA4EA0D9377F7E156 /* RulesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesListViewModel.swift; sourceTree = "<group>"; };
-		CD722D1E002ED80C26AED7FE /* RuleEditorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleEditorModel.swift; sourceTree = "<group>"; };
-		D69BA631F601A5EB1D7C78A0 /* MSALTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSALTokenProvider.swift; sourceTree = "<group>"; };
-		DDE4F3DDADC6A47E0CCB6740 /* RuleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleDetailView.swift; sourceTree = "<group>"; };
-		F7FBAB2B8AD37FDE06E95E4A /* RuleBook.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = RuleBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0178A40B3C75479CB050555C /* RuleEditorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleEditorModel.swift; sourceTree = "<group>"; };
+		04737A35D3A609B22837882E /* RulesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesListView.swift; sourceTree = "<group>"; };
+		0541FFE49B033BF1A6D194F6 /* RuleBook */ = {isa = PBXFileReference; lastKnownFileType = folder; name = RuleBook; path = ..; sourceTree = SOURCE_ROOT; };
+		0837E43CDF9DF7B5648234F3 /* DesignTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignTokens.swift; sourceTree = "<group>"; };
+		15BC9E3FF4B49208354D0359 /* EmptyStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStates.swift; sourceTree = "<group>"; };
+		2CA180A07CFA6F9A35D88299 /* PreviewSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSeed.swift; sourceTree = "<group>"; };
+		33C9364D788CDBD25D78BEDF /* ConditionEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionEditor.swift; sourceTree = "<group>"; };
+		5C81C42C5360070006BEED62 /* RuleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleDetailView.swift; sourceTree = "<group>"; };
+		65D063BB8D7341C7338CD1AD /* AddAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountView.swift; sourceTree = "<group>"; };
+		75EBFFCBB1851E430C038584 /* AccountStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountStore.swift; sourceTree = "<group>"; };
+		930B7A542CD59DD89DC4CA12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		97D94761282964ED07949781 /* RuleDiagnostics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleDiagnostics.swift; sourceTree = "<group>"; };
+		A1F60C0A8E75EE9242771716 /* RuleEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleEditorView.swift; sourceTree = "<group>"; };
+		BAB651FE9D3FE83085EF2774 /* AccountsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsView.swift; sourceTree = "<group>"; };
+		BCFFA801C6A0B88625247FBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D13E754716B70A913307162C /* RuleBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuleBookApp.swift; sourceTree = "<group>"; };
+		D32210122649D35CB55AB2A6 /* MSALTokenProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSALTokenProvider.swift; sourceTree = "<group>"; };
+		DD4E1FE31C250BA2778D37DF /* RulesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesListViewModel.swift; sourceTree = "<group>"; };
+		DF51557542604AA48BF04DCD /* Rulebook.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Rulebook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B3894BF6F8A9666E35A0ED31 /* Frameworks */ = {
+		0055881EBBA417F14C5ECFD7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1CE864B3FC11CB4DDC9C29E /* RuleBookKit in Frameworks */,
-				3A68A07F3687286D47B80B79 /* MSAL in Frameworks */,
+				792874D7A39F0035F46032FB /* RulebookKit in Frameworks */,
+				A3BB8AFF44C7E104143F6A3F /* MSAL in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		45B37AE0295E29D041AA76E2 /* RuleBook */ = {
+		4138BE30A068FA6A78DEB51C /* Rulebook */ = {
 			isa = PBXGroup;
 			children = (
-				2B7461EAB15B4BDD766937C1 /* AccountStore.swift */,
-				6A57635C3E656E41B19ABF68 /* AccountsView.swift */,
-				4E284461C0514C8EED4247CB /* AddAccountView.swift */,
-				18003C0AD922E0FFAED9CA0A /* Assets.xcassets */,
-				4A272BFF79C24FA63B4F0E01 /* ConditionEditor.swift */,
-				6CDBBCA782510FF444FC6058 /* DesignTokens.swift */,
-				1ACFF6F152A6FFE894FAC3FC /* EmptyStates.swift */,
-				5C19341C5698FF6827098037 /* Info.plist */,
-				D69BA631F601A5EB1D7C78A0 /* MSALTokenProvider.swift */,
-				76AB41F30714040086DABF89 /* PreviewSeed.swift */,
-				A57578D57066BFFCBB97E122 /* RuleBookApp.swift */,
-				DDE4F3DDADC6A47E0CCB6740 /* RuleDetailView.swift */,
-				4F16F2837E200AC2D46D5853 /* RuleDiagnostics.swift */,
-				CD722D1E002ED80C26AED7FE /* RuleEditorModel.swift */,
-				10598980B0E15EEC38C5BD0C /* RuleEditorView.swift */,
-				074BD23E252E10DA38878E8D /* RulesListView.swift */,
-				B156E72DA4EA0D9377F7E156 /* RulesListViewModel.swift */,
+				75EBFFCBB1851E430C038584 /* AccountStore.swift */,
+				BAB651FE9D3FE83085EF2774 /* AccountsView.swift */,
+				65D063BB8D7341C7338CD1AD /* AddAccountView.swift */,
+				BCFFA801C6A0B88625247FBA /* Assets.xcassets */,
+				33C9364D788CDBD25D78BEDF /* ConditionEditor.swift */,
+				0837E43CDF9DF7B5648234F3 /* DesignTokens.swift */,
+				15BC9E3FF4B49208354D0359 /* EmptyStates.swift */,
+				930B7A542CD59DD89DC4CA12 /* Info.plist */,
+				D32210122649D35CB55AB2A6 /* MSALTokenProvider.swift */,
+				2CA180A07CFA6F9A35D88299 /* PreviewSeed.swift */,
+				D13E754716B70A913307162C /* RuleBookApp.swift */,
+				5C81C42C5360070006BEED62 /* RuleDetailView.swift */,
+				97D94761282964ED07949781 /* RuleDiagnostics.swift */,
+				0178A40B3C75479CB050555C /* RuleEditorModel.swift */,
+				A1F60C0A8E75EE9242771716 /* RuleEditorView.swift */,
+				04737A35D3A609B22837882E /* RulesListView.swift */,
+				DD4E1FE31C250BA2778D37DF /* RulesListViewModel.swift */,
 			);
-			path = RuleBook;
+			path = Rulebook;
 			sourceTree = "<group>";
 		};
-		45D6FF60B81B49985A26BB60 /* Products */ = {
+		8C23DC8C42096877B198C844 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				F7FBAB2B8AD37FDE06E95E4A /* RuleBook.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		6EBD8BB161912FF4BE352DE3 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				62C1022F9E8347E6462A6F25 /* RuleBook */,
+				0541FFE49B033BF1A6D194F6 /* RuleBook */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
 		};
-		73DB3DA7BF524BC57CFDC093 = {
+		966991D2919A7B04A1A4A59D = {
 			isa = PBXGroup;
 			children = (
-				6EBD8BB161912FF4BE352DE3 /* Packages */,
-				45B37AE0295E29D041AA76E2 /* RuleBook */,
-				45D6FF60B81B49985A26BB60 /* Products */,
+				8C23DC8C42096877B198C844 /* Packages */,
+				4138BE30A068FA6A78DEB51C /* Rulebook */,
+				D0D0A6848D6592310868A5B9 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		D0D0A6848D6592310868A5B9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DF51557542604AA48BF04DCD /* Rulebook.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C18250A10625F09D774C16C4 /* RuleBook */ = {
+		DE7D9D5EC554635C5E56417D /* Rulebook */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 81847C900C84C40C5704B18D /* Build configuration list for PBXNativeTarget "RuleBook" */;
+			buildConfigurationList = A7489424D3DB375529CE1BA4 /* Build configuration list for PBXNativeTarget "Rulebook" */;
 			buildPhases = (
-				516CAD012B89D10377DEE029 /* Sources */,
-				82DB8717DE756383AD4732F4 /* Resources */,
-				B3894BF6F8A9666E35A0ED31 /* Frameworks */,
+				8E0418412E920C97EEB45C2B /* Sources */,
+				F236FCB84B5E1BDFB9505A5E /* Resources */,
+				0055881EBBA417F14C5ECFD7 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = RuleBook;
+			name = Rulebook;
 			packageProductDependencies = (
-				5DC8328B72F000D5657DE376 /* RuleBookKit */,
-				450FF7C0D5A79DA642FDF855 /* MSAL */,
+				4E10F50DC172D15F31C7DD43 /* RulebookKit */,
+				F405D37C0A53D316D4A68C01 /* MSAL */,
 			);
-			productName = RuleBook;
-			productReference = F7FBAB2B8AD37FDE06E95E4A /* RuleBook.app */;
+			productName = Rulebook;
+			productReference = DF51557542604AA48BF04DCD /* Rulebook.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		6B78AD7716959D4D8CB43827 /* Project object */ = {
+		9B5F32C7E1AC3A9B3B438EE5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					C18250A10625F09D774C16C4 = {
+					DE7D9D5EC554635C5E56417D = {
 						DevelopmentTeam = Y7KVX7666P;
 					};
 				};
 			};
-			buildConfigurationList = 629104FB58AD3BBF5ADE7184 /* Build configuration list for PBXProject "RuleBook" */;
+			buildConfigurationList = A7751F938422C5BE0AD2FE9A /* Build configuration list for PBXProject "Rulebook" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
 				en,
 			);
-			mainGroup = 73DB3DA7BF524BC57CFDC093;
+			mainGroup = 966991D2919A7B04A1A4A59D;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				5556198248955AE970305CE3 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */,
-				1B7E2E50A26D565E7F4BEC9D /* XCLocalSwiftPackageReference ".." */,
+				4C2EEBB3C4C169E91660F090 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */,
+				77D3B7BF71EC1A86354AE517 /* XCLocalSwiftPackageReference ".." */,
 			);
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 45D6FF60B81B49985A26BB60 /* Products */;
+			productRefGroup = D0D0A6848D6592310868A5B9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C18250A10625F09D774C16C4 /* RuleBook */,
+				DE7D9D5EC554635C5E56417D /* Rulebook */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		82DB8717DE756383AD4732F4 /* Resources */ = {
+		F236FCB84B5E1BDFB9505A5E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D91356052548E31AACEB7B7 /* Assets.xcassets in Resources */,
+				E54FBBC090BF8C95339CFCA1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		516CAD012B89D10377DEE029 /* Sources */ = {
+		8E0418412E920C97EEB45C2B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4DD6D4B219ABC197F31455B /* AccountStore.swift in Sources */,
-				230CB907824FE33DECF9858F /* AccountsView.swift in Sources */,
-				F3C0256AA2946BB628464B44 /* AddAccountView.swift in Sources */,
-				846CA41364D961319CE67815 /* ConditionEditor.swift in Sources */,
-				3D27098E77181B143C3DBE20 /* DesignTokens.swift in Sources */,
-				253465F0C6E706322284320D /* EmptyStates.swift in Sources */,
-				996D7BCDC7E6B6FACFDFA82E /* MSALTokenProvider.swift in Sources */,
-				3EDD00C4FCEB8D827210E070 /* PreviewSeed.swift in Sources */,
-				C30FD436D97CF43E613C73F4 /* RuleBookApp.swift in Sources */,
-				E4632543B4F53A3B14E006E8 /* RuleDetailView.swift in Sources */,
-				81AB0BDFDB52C7369D640F4D /* RuleDiagnostics.swift in Sources */,
-				F577F1345ED03A9CB0D89486 /* RuleEditorModel.swift in Sources */,
-				886A84F0AF5ABEAB127E381E /* RuleEditorView.swift in Sources */,
-				1FA0DA35D93390F0602BB0F5 /* RulesListView.swift in Sources */,
-				DE82CE143189DC1BA2AF4B52 /* RulesListViewModel.swift in Sources */,
+				38122D86E7D5516B34689AFF /* AccountStore.swift in Sources */,
+				A4F90554F0DE7C26F35CD1EA /* AccountsView.swift in Sources */,
+				D9AB0810DFF1697C5B24BF0E /* AddAccountView.swift in Sources */,
+				9B8CB2A8287D746593404219 /* ConditionEditor.swift in Sources */,
+				A26A831271B0377830F17835 /* DesignTokens.swift in Sources */,
+				B031FBEA1ABA14A19AF230DA /* EmptyStates.swift in Sources */,
+				36E13F777F772DD299E64A25 /* MSALTokenProvider.swift in Sources */,
+				5308BB620CA607295E52C72B /* PreviewSeed.swift in Sources */,
+				30A90C395839A52FA869E359 /* RuleBookApp.swift in Sources */,
+				E049EE3E14953624AD28E21A /* RuleDetailView.swift in Sources */,
+				808DCAF6FF8A56864ACFCA0E /* RuleDiagnostics.swift in Sources */,
+				F20287F8D951B6F3CC89DF59 /* RuleEditorModel.swift in Sources */,
+				7AC53E14155FCC094E5E5863 /* RuleEditorView.swift in Sources */,
+				8AB38089FE11B85E2C4742B7 /* RulesListView.swift in Sources */,
+				6637068E2CCA89FBD6C41A25 /* RulesListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		205BEDA284644D91E5713605 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = Y7KVX7666P;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = RuleBook/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = net.steinbok.RuleBook;
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 6.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		52CAD1DC0E1D7912BE685456 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		6373CF390B1DB33706383830 /* Debug */ = {
+		7A73AD1D0C060FDE3500C29B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -348,43 +272,119 @@
 			};
 			name = Debug;
 		};
-		C56B86CDDD81E78FA6C09DB9 /* Release */ = {
+		9633D4C4B510FC0618BABE81 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = Y7KVX7666P;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = RuleBook/Info.plist;
+				INFOPLIST_FILE = Rulebook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = net.steinbok.RuleBook;
+				PRODUCT_BUNDLE_IDENTIFIER = net.steinbok.Rulebook;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		BBBA81EE9C1654C466DFB369 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = Y7KVX7666P;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Rulebook/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.steinbok.Rulebook;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
+		F4E0376281C65F35A7F4E251 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		629104FB58AD3BBF5ADE7184 /* Build configuration list for PBXProject "RuleBook" */ = {
+		A7489424D3DB375529CE1BA4 /* Build configuration list for PBXNativeTarget "Rulebook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6373CF390B1DB33706383830 /* Debug */,
-				52CAD1DC0E1D7912BE685456 /* Release */,
+				9633D4C4B510FC0618BABE81 /* Debug */,
+				BBBA81EE9C1654C466DFB369 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		81847C900C84C40C5704B18D /* Build configuration list for PBXNativeTarget "RuleBook" */ = {
+		A7751F938422C5BE0AD2FE9A /* Build configuration list for PBXProject "Rulebook" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				205BEDA284644D91E5713605 /* Debug */,
-				C56B86CDDD81E78FA6C09DB9 /* Release */,
+				7A73AD1D0C060FDE3500C29B /* Debug */,
+				F4E0376281C65F35A7F4E251 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
@@ -392,14 +392,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		1B7E2E50A26D565E7F4BEC9D /* XCLocalSwiftPackageReference ".." */ = {
+		77D3B7BF71EC1A86354AE517 /* XCLocalSwiftPackageReference ".." */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ..;
 		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5556198248955AE970305CE3 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */ = {
+		4C2EEBB3C4C169E91660F090 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AzureAD/microsoft-authentication-library-for-objc";
 			requirement = {
@@ -410,16 +410,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		450FF7C0D5A79DA642FDF855 /* MSAL */ = {
+		4E10F50DC172D15F31C7DD43 /* RulebookKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5556198248955AE970305CE3 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */;
-			productName = MSAL;
+			productName = RulebookKit;
 		};
-		5DC8328B72F000D5657DE376 /* RuleBookKit */ = {
+		F405D37C0A53D316D4A68C01 /* MSAL */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = RuleBookKit;
+			package = 4C2EEBB3C4C169E91660F090 /* XCRemoteSwiftPackageReference "microsoft-authentication-library-for-objc" */;
+			productName = MSAL;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 6B78AD7716959D4D8CB43827 /* Project object */;
+	rootObject = 9B5F32C7E1AC3A9B3B438EE5 /* Project object */;
 }

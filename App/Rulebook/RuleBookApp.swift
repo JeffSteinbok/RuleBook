@@ -1,8 +1,8 @@
 import SwiftUI
-import RuleBookKit
+import RulebookKit
 
 @main
-struct RuleBookApp: App {
+struct RulebookApp: App {
     @State private var accounts = AccountStore()
     @State private var tokens: MSALTokenProvider?
     @State private var bootError: String?

@@ -1,7 +1,7 @@
 # RuleBook iOS — screen spec
 
 Companion to the prototype in `Rulebook.dc.html`. Every screen maps to
-`RuleBookKit` types; nothing here needs a new library API except where noted
+`RulebookKit` types; nothing here needs a new library API except where noted
 under **Gaps**.
 
 Bind screens to `ProviderProfile` + `any RuleStore`, never to `GraphRuleStore`.
@@ -53,7 +53,7 @@ else sentence case.
 
 ## 1. Gate (no account)
 
-Shown **only** when no account is connected. `RuleBookApp` decides at launch;
+Shown **only** when no account is connected. `RulebookApp` decides at launch;
 never a screen someone with an account can reach.
 
 - Full-bleed `accent` field, `RULEBOOK` wordmark, tagline
@@ -235,7 +235,7 @@ fix button reorders it, which is why reorder isn't optional).
 
 ---
 
-## Gaps in RuleBookKit
+## Gaps in RulebookKit
 
 Four things the app needs that the library doesn't have yet. All small.
 

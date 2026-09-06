@@ -1,5 +1,5 @@
 import Foundation
-import RuleBookKit
+import RulebookKit
 
 /// A problem with a rule, surfaced in the list and on the detail screen.
 ///
@@ -7,7 +7,7 @@ import RuleBookKit
 /// analysis — which is the point: the README notes a rule can reference a
 /// deleted folder and still be reported healthy, silently dropping mail.
 ///
-/// This type is a candidate to move into RuleBookKit next to `RuleValidator`
+/// This type is a candidate to move into RulebookKit next to `RuleValidator`
 /// (see "Gaps" in the spec) — it's provider-neutral policy, and the CLI would
 /// get `rulebook doctor` for free.
 struct RuleIssue: Identifiable, Hashable {
