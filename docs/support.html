@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rulebook — Support</title>
+<meta name="description" content="Help with Rulebook: signing in, permissions, broken rules, and how to report a problem.">
+<meta property="og:title" content="Rulebook — Support">
+<meta property="og:url" content="https://jeffsteinbok.github.io/Rulebook/support.html">
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="wordmark" href="./">RULEBOOK</a>
+    <div class="nav-links">
+      <a href="./">Home</a>
+      <a href="#report">Report a problem</a>
+      <a href="https://github.com/JeffSteinbok/Rulebook">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container hero">
+  <h1>Support</h1>
+  <div class="rule"></div>
+  <p class="lede">
+    Rulebook is made by one person and developed in the open. The fastest way to
+    get something fixed is to open an issue.
+  </p>
+  <div class="hero-buttons">
+    <a class="btn btn-primary" href="https://github.com/JeffSteinbok/Rulebook/issues/new">Open an issue</a>
+    <a class="btn btn-ghost" href="https://github.com/JeffSteinbok/Rulebook/issues">Browse existing issues</a>
+  </div>
+</div>
+
+<section id="report" class="container">
+  <h2>Reporting a problem</h2>
+  <p>Include whatever of this you have — it usually decides how quickly something can be fixed:</p>
+  <ul>
+    <li>What you were doing, and what happened instead.</li>
+    <li>Whether the mailbox is a personal Microsoft account or a work/school one. They behave differently, and several bugs have only appeared on one of them.</li>
+    <li>The exact wording of any error. Rulebook deliberately shows the server's own message rather than hiding it behind "something went wrong".</li>
+    <li>The app version, from <strong>About Rulebook</strong> in the ••• menu.</li>
+  </ul>
+  <div class="note">
+    <p>Please don't paste message contents or full email addresses into an issue.
+    A rule's name and the shape of what failed is nearly always enough.</p>
+  </div>
+</section>
+
+<section id="signin" class="container">
+  <h2>Signing in</h2>
+
+  <h3>The sign-in screen never appears, or fails immediately</h3>
+  <p>
+    Sign-in is presented by Microsoft, not by Rulebook. If it fails before the
+    Microsoft page appears, the app couldn't start the request at all — worth an
+    issue, with the message you saw.
+  </p>
+
+  <h3>My organisation blocks it</h3>
+  <p>
+    Some tenants require an administrator to approve an app before anyone can
+    use it. That approval is theirs to give, not something the app can work
+    around. The error names the app and the permissions, so it can be forwarded
+    to whoever administers your tenant.
+  </p>
+
+  <h3>Removing Rulebook's access</h3>
+  <p>
+    Sign out from <strong>Manage accounts</strong>, which removes the token from
+    the phone. To revoke the grant itself, use
+    <a href="https://account.live.com/consent/Manage">account.live.com/consent/Manage</a>
+    for a personal Microsoft account, or
+    <a href="https://myapps.microsoft.com">myapps.microsoft.com</a> for a work or
+    school account.
+  </p>
+</section>
+
+<section id="rules" class="container">
+  <h2>Rules</h2>
+
+  <h3>A rule is marked as not working</h3>
+  <p>
+    Three different things get reported that way. <strong>Rule is in error</strong>
+    comes from Exchange itself. <strong>Folder is missing</strong> means the rule
+    files into a folder that no longer exists — Exchange still reports that rule
+    as healthy, which is why Rulebook checks separately. <strong>Never runs</strong>
+    means an earlier rule stops processing before this one is reached; moving it
+    up fixes it.
+  </p>
+
+  <h3>"Managed by your organisation"</h3>
+  <p>
+    Your administrator owns that rule. It can be read but not changed, disabled
+    or deleted, so those controls are shown inactive rather than failing when
+    tapped.
+  </p>
+
+  <h3>There's no "does not contain"</h3>
+  <p>
+    Outlook rules have no negative match. Exclusions are expressed as exceptions
+    instead: add the thing to the <strong>Unless</strong> section, and the rule is
+    skipped when it matches. This is a limitation of the mail service, not of the
+    app, and works out the same way.
+  </p>
+
+  <h3>Order matters</h3>
+  <p>
+    Rules run top to bottom, and one carrying "stop processing later rules" ends
+    evaluation for that message. If a rule seems to be ignored, check what sits
+    above it.
+  </p>
+
+  <h3>A change didn't save</h3>
+  <p>
+    Edits apply on the phone first and are then pushed to the server. If the push
+    fails, the change is kept and the rule is marked as not saved yet, with the
+    option to retry or discard — a dropped connection never silently undoes your
+    work. Deletes are the exception: a rule that looks deleted but is still
+    filing mail is worse than an error, so a failed delete puts the rule back.
+  </p>
+</section>
+
+<section id="privacy" class="container">
+  <h2>Privacy</h2>
+  <p>
+    Rulebook stores no mail. It reads and writes rules on your mail server, and
+    those rules keep running when the app is closed. There is no Rulebook
+    account, no analytics, and no server of its own — the app talks only to
+    Microsoft.
+  </p>
+  <p>
+    Reading your folder list requires a permission that also grants message
+    senders, recipients and subjects. Rulebook does not read them, but the grant
+    is broader than the app's use of it, and
+    <a href="./#permissions">why that is</a> is worth knowing.
+  </p>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Made with ♥ by <a href="https://github.com/JeffSteinbok">Jeff Steinbok</a> ·
+       <a href="./">Home</a> ·
+       <a href="https://github.com/JeffSteinbok/Rulebook">Source</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

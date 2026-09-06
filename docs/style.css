@@ -1,0 +1,115 @@
+/* Rulebook — web palette taken from the app's dark tokens, so the site and
+   the product look like the same thing. */
+:root {
+    --ground: #12151C;
+    --surface: #1C2027;
+    --surface-2: #232833;
+    --border: #2C3341;
+    --border-bright: #3A4354;
+    --ink: #F2F4F8;
+    --ink-dim: #AEB6C4;
+    --ink-muted: #79828F;
+    --accent: #3B6AE8;
+    --accent-ink: #9DB9FC;
+    --warning: #E0A44A;
+    --mono: 'SF Mono', 'Fira Code', ui-monospace, monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--ground);
+    color: var(--ink);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent-ink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.container { max-width: 940px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* ── Nav ── */
+nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(18, 21, 28, 0.82);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+}
+.nav-inner {
+    max-width: 940px; margin: 0 auto; padding: 0.9rem 1.5rem;
+    display: flex; align-items: center; gap: 1.5rem;
+}
+.wordmark {
+    font-weight: 900; letter-spacing: -0.02em; font-size: 1.15rem;
+    color: var(--ink); text-decoration: none;
+}
+.wordmark:hover { text-decoration: none; }
+.nav-links { margin-left: auto; display: flex; gap: 1.5rem; font-size: 0.95rem; }
+.nav-links a { color: var(--ink-dim); }
+.nav-links a:hover { color: var(--ink); text-decoration: none; }
+
+/* ── Hero ── */
+.hero { padding: 5.5rem 0 4rem; }
+.hero h1 {
+    font-size: clamp(2.6rem, 7vw, 4.2rem); font-weight: 900;
+    letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 1.25rem;
+}
+.hero .rule { width: 56px; height: 3px; background: var(--accent); margin-bottom: 1.75rem; }
+.hero p.lede { font-size: 1.3rem; color: var(--ink-dim); max-width: 34rem; }
+.hero-buttons { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.25rem; }
+
+.btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.8rem 1.4rem; border-radius: 12px; font-weight: 600;
+    font-size: 1rem; border: 1px solid transparent; transition: all 0.15s ease;
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: #4d78ee; text-decoration: none; }
+.btn-ghost { border-color: var(--border-bright); color: var(--ink); }
+.btn-ghost:hover { border-color: var(--ink-muted); text-decoration: none; }
+
+/* ── Sections ── */
+section { padding: 3.5rem 0; border-top: 1px solid var(--border); }
+section h2 {
+    font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.6rem;
+}
+section h3 { font-size: 1.15rem; font-weight: 700; margin: 2rem 0 0.5rem; }
+section p { color: var(--ink-dim); max-width: 44rem; margin-bottom: 1rem; }
+.section-lede { font-size: 1.1rem; margin-bottom: 2rem; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+.card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.4rem;
+}
+.card h3 { margin: 0 0 0.4rem; font-size: 1.05rem; }
+.card p { font-size: 0.95rem; margin: 0; color: var(--ink-dim); }
+
+table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.95rem; }
+th, td { text-align: left; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { color: var(--ink-muted); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; }
+td code { font-family: var(--mono); font-size: 0.85rem; color: var(--accent-ink); }
+
+.note {
+    background: var(--surface); border-left: 3px solid var(--accent);
+    border-radius: 0 10px 10px 0; padding: 1rem 1.2rem; margin: 1.5rem 0;
+}
+.note p { margin: 0; }
+.note.warn { border-left-color: var(--warning); }
+
+ul { color: var(--ink-dim); margin: 0 0 1rem 1.2rem; }
+li { margin-bottom: 0.5rem; }
+
+footer {
+    border-top: 1px solid var(--border); padding: 2.5rem 0 3.5rem;
+    color: var(--ink-muted); font-size: 0.9rem;
+}
+footer a { color: var(--ink-dim); }
+
+@media (max-width: 560px) {
+    .nav-links { gap: 1rem; font-size: 0.9rem; }
+    .hero { padding: 3.5rem 0 2.5rem; }
+}
