@@ -20,10 +20,6 @@ public actor GraphMailFolderDirectory: FolderDirectory {
 
     private var cache: [MailboxFolder]?
     private var pathByID: [String: String] = [:]
-    /// Set when a fetch fails — most often because `Mail.ReadBasic` has not
-    /// been consented. Resolution then degrades to showing raw ids rather than
-    /// re-requesting, and failing, once per folder.
-    private var isUnavailable = false
 
     public init(
         tokenProvider: any TokenProvider,
@@ -36,16 +32,13 @@ public actor GraphMailFolderDirectory: FolderDirectory {
     }
 
     public func folders() async throws -> [MailboxFolder] {
+        // Only successes are cached. An earlier version latched failures so a
+        // missing scope would not be retried per folder — but that turned one
+        // transient error, such as a token arriving late at launch, into an
+        // empty folder list for the rest of the session, which is how the
+        // rule editor ended up with no folders to pick from.
         if let cache { return cache }
-        if isUnavailable { return [] }
-
-        let raw: [GraphMailFolder]
-        do {
-            raw = try await fetchAll()
-        } catch {
-            isUnavailable = true
-            throw error
-        }
+        let raw = try await fetchAll()
         let byID = Dictionary(raw.map { ($0.id, $0) }, uniquingKeysWith: { first, _ in first })
 
         // Build a display path by walking up parentFolderId. Depth is bounded

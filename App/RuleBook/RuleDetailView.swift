@@ -8,8 +8,21 @@ import RuleBookKit
 /// it then does. "Then, on the server" — not "then Rulebook will", because
 /// Exchange runs these, not the app.
 struct RuleDetailView: View {
-    let rule: MailRule
+    /// What was on screen when this view was pushed. Everything renders from
+    /// ``rule`` instead, which re-reads the live copy: a toggle or an edit
+    /// updates the view model, and a snapshot captured at push time would go
+    /// on showing the old state.
+    private let snapshot: MailRule
     let model: RulesListViewModel
+
+    init(rule: MailRule, model: RulesListViewModel) {
+        self.snapshot = rule
+        self.model = model
+    }
+
+    private var rule: MailRule {
+        model.rules.first { $0.id == snapshot.id } ?? snapshot
+    }
 
     @Environment(\.dismiss) private var dismiss
     @State private var isEditing = false
