@@ -31,7 +31,32 @@ actor MSALTokenProvider: TokenProvider {
     private let scopes: [String]
     private var account: MSALAccount?
 
+    /// MSAL reports almost everything as MSALErrorInternal (-50000), whose
+    /// `localizedDescription` says nothing. Its own logger is the only place
+    /// the real reason appears, so it is wired up once, here.
+    private static let logging: Void = {
+        // MSAL defaults to brokered auth — handing sign-in to the Microsoft
+        // Authenticator app — and refuses to fall back on its own:
+        //   "Requiring default broker type due to app being built with iOS 13 SDK"
+        //   Encountered error with code -51112
+        // There is no Authenticator on the simulator, so acquireToken failed
+        // before any browser opened, surfacing as MSALErrorInternal (-50000).
+        // The broker only buys SSO with other Microsoft apps, which this app
+        // already gave up when its token cache moved out of the shared keychain
+        // group. ASWebAuthenticationSession still runs Microsoft's own page, so
+        // the app never sees a password either way.
+        MSALGlobalConfig.brokerAvailability = .none
+
+        MSALGlobalConfig.loggerConfig.logLevel = .verbose
+        MSALGlobalConfig.loggerConfig.setLogCallback { _, message, containsPII in
+            guard let message, !containsPII else { return }
+            NSLog("MSALLOG %@", message)
+        }
+    }()
+
     init(clientID: String, scopes: [String] = GraphScopes.default) throws {
+        _ = Self.logging
+
         let authority = try MSALAuthority(
             url: URL(string: "https://login.microsoftonline.com/common")!
         )

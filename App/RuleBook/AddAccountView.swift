@@ -209,11 +209,11 @@ struct GateView: View {
         VStack(alignment: .leading, spacing: 20) {
             Spacer()
 
-            Text("RULE\nBOOK")
+            Text("RULEBOOK")
                 .font(.custom("Archivo-Black", size: 68, relativeTo: .largeTitle))
                 .foregroundStyle(.white)
-                .lineSpacing(-8)
-                .minimumScaleFactor(0.6)
+                .lineLimit(1)
+                .minimumScaleFactor(0.4)
                 .accessibilityLabel("Rulebook")
 
             Rectangle()
