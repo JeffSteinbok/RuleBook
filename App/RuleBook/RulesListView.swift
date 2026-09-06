@@ -136,7 +136,14 @@ struct RulesListView: View {
         }
         .listStyle(.plain)
         .environment(\.editMode, .constant(model.mode == .reorder ? .active : .inactive))
-        .searchable(text: $model.query, prompt: "Search rules, senders, folders")
+        // iOS 26 anchors an unplaced `.searchable` to the bottom of the screen,
+        // below the New rule bar. The spec puts search directly under the
+        // attention banner, above the list, so the placement is explicit.
+        .searchable(
+            text: $model.query,
+            placement: .navigationBarDrawer(displayMode: .always),
+            prompt: "Search rules, senders, folders"
+        )
     }
 
     @ViewBuilder

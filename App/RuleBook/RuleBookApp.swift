@@ -12,10 +12,24 @@ struct RuleBookApp: App {
         Bundle.main.object(forInfoDictionaryKey: "RulebookClientID") as? String ?? ""
     }
 
+    /// Runs the whole app on `InMemoryRuleStore` with the preview seed: no
+    /// MSAL, no network, no Azure. The brief asks for gestures to be judged on
+    /// a real touch loop before auth exists, and the seed carries all four
+    /// diagnostic states, so this is also how the screenshots get taken.
+    private var isDemo: Bool {
+        ProcessInfo.processInfo.arguments.contains("-demo")
+    }
+
     var body: some Scene {
         WindowGroup {
             Group {
-                if let tokens {
+                if isDemo {
+                    RulesListView(model: RulesListViewModel(
+                        store: PreviewSeed.store(),
+                        folders: PreviewSeed.folders,
+                        profile: ProviderCatalog.outlook
+                    ))
+                } else if let tokens {
                     // A connected mailbox means onboarding has nothing to do —
                     // launch straight into the rules.
                     if accounts.isEmpty {
