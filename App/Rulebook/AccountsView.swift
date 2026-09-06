@@ -165,10 +165,8 @@ struct AboutView: View {
                     .listRowBackground(DS.Palette.ground)
                     .listRowInsets(.init(top: 0, leading: DS.Metric.gutter, bottom: 0, trailing: DS.Metric.gutter))
 
-                // rulebook.app does not exist yet; the repository is the real
-                // place to raise something in the meantime.
-                Link(destination: URL(string: "https://github.com/JeffSteinbok/Rulebook")!) {
-                    DetailRow(key: "Support", value: "github.com/JeffSteinbok/Rulebook")
+                Link(destination: URL(string: "https://jeffsteinbok.github.io/Rulebook/support.html")!) {
+                    DetailRow(key: "Support", value: "jeffsteinbok.github.io/Rulebook")
                 }
                 .listRowBackground(DS.Palette.ground)
                 .listRowInsets(.init(top: 0, leading: DS.Metric.gutter, bottom: 0, trailing: DS.Metric.gutter))
