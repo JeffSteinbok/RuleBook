@@ -21,7 +21,7 @@ struct RuleEditorView: View {
     var body: some View {
         NavigationStack {
             List {
-                if !model.isEditing { progress }
+                if model.isEditing { editorTabs } else { progress }
 
                 switch model.step {
                 case .name: nameStep
@@ -259,6 +259,22 @@ struct RuleEditorView: View {
     private var canProceed: Bool {
         if model.isEditing || model.step == .actions { return model.canSave }
         return true
+    }
+
+    /// Creating walks name → conditions → actions, so the step is implied.
+    /// Editing opens on conditions and saves from anywhere, which left the
+    /// actions pane with no route to it at all.
+    private var editorTabs: some View {
+        Picker("", selection: Binding(
+            get: { model.step },
+            set: { model.step = $0 }
+        )) {
+            Text("Conditions").tag(RuleEditorModel.Step.conditions)
+            Text("Actions").tag(RuleEditorModel.Step.actions)
+        }
+        .pickerStyle(.segmented)
+        .listRowBackground(DS.Palette.ground)
+        .listRowInsets(.init(top: 4, leading: DS.Metric.gutter, bottom: 8, trailing: DS.Metric.gutter))
     }
 
     private func advance() async {
